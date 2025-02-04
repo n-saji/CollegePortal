@@ -1,36 +1,52 @@
 import { validateCookie } from "../../utils/cookies";
-export const Dashboard = ({ cToken, setNavigateToDashboard }) => {
-  console.log(cToken);
-  console.log(validateCookie(cToken));
+import "./dashboard.css";
+import { useEffect, useState } from "react";
+
+const validateCookieStatus = (cToken) => {
   if (cToken === "") {
-    setNavigateToDashboard(false);
+    return false;
   }
+
   validateCookie(cToken).then((res) => {
     if (res === false) {
-      setNavigateToDashboard(false);
+      return false;
     }
   });
+  return true;
+};
+
+export const Dashboard = (props) => {
+  if (!validateCookieStatus(props.cToken)) {
+    props.setNavigateToDashboard(false);
+  }
+
+  const [showSidePanel, setShowSidePanel] = useState(true);
 
   return (
     <>
       <div className="dashboard">
-        <div className="dashboard_window">
-          <div className="dashboard_window_title">
-            <h1>Dashboard</h1>
+        <div
+          className="dashboard_side_panel"
+          style={{ translate: showSidePanel ? "0" : "-18rem" }}
+        >
+          <div className="dashboard_side_panel_content">
+            <p onClick={() => setShowSidePanel(false)}>Home</p>
+            <p>Course</p>
+            <p>Students</p>
+            <p>Instructors</p>
           </div>
-
-          <div className="dashboard_window_content">
-            <div className="dashboard_window_content_title">
-              <h2>Content</h2>
-            </div>
-            <div className="dashboard_window_content_list">
-              <ul>
-                <li>Content 1</li>
-                <li>Content 2</li>
-                <li>Content 3</li>
-                <li>Content 4</li>
-              </ul>
-            </div>
+          <button
+            className="dashboard_side_panel_toggle_button"
+            onClick={() => setShowSidePanel(!showSidePanel)}
+          >
+            {showSidePanel ? "<" : ">"}
+          </button>
+        </div>
+        <div className="dashboard_header">
+          <div className="dashboard_header_title">Dashboard</div>
+          <div className="dashboard_header_logout">
+            <p>Your Name</p>
+            <div className="profile_dropdown"></div>
           </div>
         </div>
       </div>

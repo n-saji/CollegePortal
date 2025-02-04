@@ -55,7 +55,7 @@ function App() {
       )}
       {navigateToDashboard && (
         <Dashboard
-        cToken={token}
+          cToken={token}
           setNavigateToDashboard={setNavigateToDashboard}
         />
       )}
