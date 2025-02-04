@@ -18,11 +18,15 @@
 
 .dashboard_side_panel_content p {
   color: white;
-  font-size: 1.5rem;
+
   margin: 1rem;
   cursor: pointer;
   position: relative;
   transition: all 0.3s ease;
+}
+
+.underline {
+  font-size: 1.5rem;
 }
 
 .underline::after {
@@ -62,7 +66,6 @@
 }
 
 .dashboard_side_panel_course_dropdown p {
-  font-size: 0.9rem;
   text-align: center;
   transition: all 0.3s ease;
 }
@@ -104,4 +107,10 @@
   color: white;
   display: flex;
   justify-content: center;
+}
+.dropdwon_underline {
+  font-size: 1.2rem;
+}
+.dropdwon_underline:hover {
+  color: black;
 }

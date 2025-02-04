@@ -31,13 +31,13 @@ export const SideBar = () => {
           </p>
           {showCourseDropdown && (
             <div className="dashboard_side_panel_course_dropdown ">
-              <p>Add</p>
+              <p className="dropdwon_underline">Add</p>
               <Link
                 to="/courses"
                 onClick={() => {
                   setShowSidePanel(false);
                 }}
-                className="dashboard_side_panel_dropdown_link"
+                className="dashboard_side_panel_dropdown_link dropdwon_underline"
               >
                 Display
               </Link>
