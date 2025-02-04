@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { API_URL } from "../../config/config.jsx";
 import { GetUserName } from "../../utils/helper.jsx";
 import loader from "../../assets/loader.gif";
+import { SideBar } from "./sidebar/sidebar.jsx";
 
 const validateCookieStatus = (cToken) => {
   if (cToken === "") {
@@ -20,21 +21,9 @@ const validateCookieStatus = (cToken) => {
 };
 
 export const Dashboard = (props) => {
-  const [showSidePanel, setShowSidePanel] = useState(true);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
-  const [showCourseDropdown, setShowCourseDropdown] = useState(false);
-
-  useEffect(() => {
-    const favicon = document.getElementById("favicon");
-
-    if (loading) {
-      favicon.href = loader; // Set rotating GIF
-    } else {
-      favicon.href = "/vite.svg"; // Restore static icon
-    }
-  }, [loading]);
 
   useEffect(() => {
     document.title = "Dashboard";
@@ -63,38 +52,7 @@ export const Dashboard = (props) => {
   return (
     <>
       <div className="dashboard">
-        <div
-          className="dashboard_side_panel"
-          style={{ translate: showSidePanel ? "0" : "-18rem" }}
-        >
-          <div className="dashboard_side_panel_content">
-            <p onClick={() => setShowSidePanel(false)}>Home</p>
-            <div>
-              <p
-                onClick={() => {
-                  setShowCourseDropdown(!showCourseDropdown);
-                }}
-              >
-                Course {showCourseDropdown ? <span>-</span> : <span>+</span>}
-              </p>
-              {showCourseDropdown && (
-                <div className="dashboard_side_panel_course_dropdown">
-                  <p>Add</p>
-                  <p>Display</p>
-                </div>
-              )}
-            </div>
-
-            <p>Students</p>
-            <p>Instructors</p>
-          </div>
-          <button
-            className="dashboard_side_panel_toggle_button"
-            onClick={() => setShowSidePanel(!showSidePanel)}
-          >
-            {showSidePanel ? "<" : ">"}
-          </button>
-        </div>
+        <SideBar />
         <div className="dashboard_header">
           <div className="dashboard_header_title">Dashboard</div>
           <div
@@ -103,7 +61,7 @@ export const Dashboard = (props) => {
               setShowProfileDropdown(!showProfileDropdown);
             }}
           >
-            <p className="profile_icon">{ username.charAt(0)}</p>
+            <p className="profile_icon">{username.charAt(0)}</p>
             <p className="profile_name">{username}</p>
             {showProfileDropdown && (
               <div className="profile_dropdown">
