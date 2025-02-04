@@ -73,9 +73,14 @@
   font-size: 1rem;
 }
 .profile_dropdown_p {
-  padding: 0.5rem;
+  padding: 0.5rem 0;
   cursor: pointer;
   border-radius: 0.5rem;
+  text-decoration: none;
+  color: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 .profile_dropdown_p:hover {
   background-color: rgba(0, 0, 0, 0.712);

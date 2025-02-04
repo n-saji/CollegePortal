@@ -6,6 +6,8 @@ import { API_URL } from "../../config/config.jsx";
 import { GetUserName } from "../../utils/helper.jsx";
 import loader from "../../assets/loader.gif";
 import { SideBar } from "./sidebar/sidebar.jsx";
+import { Routes, Route, Link, Navigate } from "react-router-dom";
+import { ShowCourses } from "./Courses/Show/showCourses.jsx";
 
 const validateCookieStatus = (cToken) => {
   if (cToken === "") {
@@ -49,6 +51,10 @@ export const Dashboard = (props) => {
       .finally(setLoading(false));
   };
 
+  const DefaultProfile = () => {
+    return <></>;
+  };
+
   return (
     <>
       <div className="dashboard">
@@ -65,7 +71,10 @@ export const Dashboard = (props) => {
             <p className="profile_name">{username}</p>
             {showProfileDropdown && (
               <div className="profile_dropdown">
-                <p className="profile_dropdown_p">Profile</p>
+                <Link to="/profile" className="profile_dropdown_p">
+                  Profile
+                </Link>
+
                 <p
                   className="profile_dropdown_p"
                   onClick={() => {
@@ -78,6 +87,10 @@ export const Dashboard = (props) => {
             )}
           </div>
         </div>
+        <Routes>
+          <Route path="/" />
+          <Route path="/courses" element={<ShowCourses />} />
+        </Routes>
       </div>
     </>
   );
