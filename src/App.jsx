@@ -1,13 +1,14 @@
 import "./App.css";
 import { useState, useEffect } from "react";
-import { BrowserRouter, Route, Routes, Navigate, Link } from "react-router-dom";
-import axios from "axios";
+// import { BrowserRouter, Route, Routes, Navigate, Link } from "react-router-dom";
 
 import LandingPage from "./components/landingPage/landingPage.jsx";
 import { Dashboard } from "./components/dashboard/dashboard.jsx";
 
-import { API_URL } from "./config/config.jsx";
+// import { API_URL } from "./config/config.jsx";
 import Cookie from "./utils/cookies.jsx";
+import { GetUserName } from "./utils/helper.jsx";
+import { validateCookie } from "./utils/cookies.jsx";
 
 function App() {
   const [token, setToken] = useState("");
@@ -27,21 +28,12 @@ function App() {
     if (c_Token === "") {
       setNavigateToDashboard(false);
     }
-
-    axios({
-      method: "GET",
-      url: API_URL + "/get-instructor-name-by-id/" + c_account_id,
-      headers: {
-        Token: c_Token,
-      },
-    })
-      .then((res) => {
-        setNavigateToDashboard(true);
-      })
-      .catch((err) => {
-        console.log(err);
-        alert("Session expired. Please login again");
-      });
+    if (!validateCookie(c_Token)) {
+      setNavigateToDashboard(false);
+    } else {
+      setNavigateToDashboard(true);
+      GetUserName(c_account_id, c_Token);
+    }
   }, []);
 
   return (
@@ -57,6 +49,7 @@ function App() {
         <Dashboard
           cToken={token}
           setNavigateToDashboard={setNavigateToDashboard}
+          c_account_id={account_id}
         />
       )}
     </>
