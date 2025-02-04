@@ -4,6 +4,7 @@ import "./dashboard.css";
 import { useEffect, useState } from "react";
 import { API_URL } from "../../config/config.jsx";
 import { GetUserName } from "../../utils/helper.jsx";
+import loader from "../../assets/loader.gif";
 
 const validateCookieStatus = (cToken) => {
   if (cToken === "") {
@@ -22,14 +23,30 @@ export const Dashboard = (props) => {
   const [showSidePanel, setShowSidePanel] = useState(true);
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [username, setUsername] = useState("");
-  useState(() => {
-    setUsername(localStorage.getItem("username"));
-  }, [localStorage.getItem("username")]);
+  const [loading, setLoading] = useState(true);
+  const [showCourseDropdown, setShowCourseDropdown] = useState(false);
+
+  useEffect(() => {
+    const favicon = document.getElementById("favicon");
+
+    if (loading) {
+      favicon.href = loader; // Set rotating GIF
+    } else {
+      favicon.href = "/vite.svg"; // Restore static icon
+    }
+  }, [loading]);
+
+  useEffect(() => {
+    document.title = "Dashboard";
+
+    GetUserName(props.c_account_id, props.cToken).then(() => {
+      setUsername(localStorage.getItem("username"));
+    });
+  }, []);
 
   if (!validateCookieStatus(props.cToken)) {
     props.setNavigateToDashboard(false);
   }
-  GetUserName(props.c_account_id, props.cToken);
 
   const logOut = () => {
     axios
@@ -39,7 +56,8 @@ export const Dashboard = (props) => {
       })
       .catch((err) => {
         console.log(err);
-      });
+      })
+      .finally(setLoading(false));
   };
 
   return (
@@ -51,7 +69,22 @@ export const Dashboard = (props) => {
         >
           <div className="dashboard_side_panel_content">
             <p onClick={() => setShowSidePanel(false)}>Home</p>
-            <p>Course</p>
+            <div>
+              <p
+                onClick={() => {
+                  setShowCourseDropdown(!showCourseDropdown);
+                }}
+              >
+                Course {showCourseDropdown ? <span>-</span> : <span>+</span>}
+              </p>
+              {showCourseDropdown && (
+                <div className="dashboard_side_panel_course_dropdown">
+                  <p>Add</p>
+                  <p>Display</p>
+                </div>
+              )}
+            </div>
+
             <p>Students</p>
             <p>Instructors</p>
           </div>
@@ -64,15 +97,14 @@ export const Dashboard = (props) => {
         </div>
         <div className="dashboard_header">
           <div className="dashboard_header_title">Dashboard</div>
-          <div className="dashboard_header_logout">
-            <p
-              className="profile_name"
-              onClick={() => {
-                setShowProfileDropdown(!showProfileDropdown);
-              }}
-            >
-              {username}
-            </p>
+          <div
+            className="dashboard_header_logout"
+            onClick={() => {
+              setShowProfileDropdown(!showProfileDropdown);
+            }}
+          >
+            <p className="profile_icon">{ username.charAt(0)}</p>
+            <p className="profile_name">{username}</p>
             {showProfileDropdown && (
               <div className="profile_dropdown">
                 <p className="profile_dropdown_p">Profile</p>

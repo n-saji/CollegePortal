@@ -2,16 +2,29 @@ import { useEffect, useState } from "react";
 import "./landingPage.css";
 import axios from "axios";
 import { API_URL } from "../../config/config.jsx";
-const LandingPage = ({ setToken, setAccount_id , setNavigateToDashboard}) => {
+const LandingPage = ({ setToken, setAccount_id, setNavigateToDashboard }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
+  const [greeting, setGreeting] = useState("");
+
+  useEffect(() => {
+    const date = new Date();
+    const hour = date.getHours();
+
+    if (hour >= 0 && hour < 12) {
+      setGreeting("Morning");
+    } else if (hour >= 12 && hour < 17) {
+      setGreeting("Afternoon");
+    } else {
+      setGreeting("Evening");
+    }
+  });
 
   const handleLogin = () => {
     if (email === "" || password === "") {
       alert("Please enter email and password");
     } else {
-      console.log(email, password);
       axios({
         method: "POST",
         url: API_URL + "/v1/login",
@@ -53,7 +66,7 @@ const LandingPage = ({ setToken, setAccount_id , setNavigateToDashboard}) => {
       <div className="landing_page">
         <div className="landing_page_window">
           <div className="landing_page_window_title">
-            <h1>Good Morning</h1>
+            <h1>Good {greeting}</h1>
             <h2>Please Login</h2>
           </div>
 

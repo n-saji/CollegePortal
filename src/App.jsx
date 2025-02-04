@@ -14,6 +14,9 @@ function App() {
   const [token, setToken] = useState("");
   const [account_id, setAccount_id] = useState(""); //TODO - remove this if not required
   const [navigateToDashboard, setNavigateToDashboard] = useState(false);
+  useEffect(() => {
+    document.title = "University Portal";
+  }, []);
 
   useEffect(() => {
     if (Cookie("token") === "") {
@@ -32,7 +35,6 @@ function App() {
       setNavigateToDashboard(false);
     } else {
       setNavigateToDashboard(true);
-      GetUserName(c_account_id, c_Token);
     }
   }, []);
 
