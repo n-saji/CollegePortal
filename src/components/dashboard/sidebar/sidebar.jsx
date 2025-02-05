@@ -31,7 +31,15 @@ export const SideBar = () => {
           </p>
           {showCourseDropdown && (
             <div className="dashboard_side_panel_course_dropdown ">
-              <p className="dropdwon_underline">Add</p>
+              <Link
+                to="/courses/add"
+                onClick={() => {
+                  setShowSidePanel(false);
+                }}
+                className="dashboard_side_panel_dropdown_link dropdwon_underline"
+              >
+                Add
+              </Link>
               <Link
                 to="/courses"
                 onClick={() => {

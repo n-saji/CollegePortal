@@ -1,5 +1,4 @@
 import axios from "axios";
-import { validateCookie } from "../../utils/cookies";
 import "./dashboard.css";
 import { useEffect, useState } from "react";
 import { API_URL } from "../../config/config.jsx";
@@ -8,19 +7,14 @@ import loader from "../../assets/loader.gif";
 import { SideBar } from "./sidebar/sidebar.jsx";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 import { ShowCourses } from "./Courses/Show/showCourses.jsx";
-
+import { AddCourse } from "./Courses/Add/AddCourse.jsx";
+import DigitalClock from "../Clock/digitalClock.jsx";
 
 export const Dashboard = (props) => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
   const [header_title, setHeaderTitle] = useState("Dashboard");
-
-  // if (!validateCookieStatus(props.cToken)) {
-  //   props.setNavigateToDashboard(false);
-  //   console.log("Session expired. Please login again");
-  //   <Link to="/" />;
-  // }
 
   useEffect(() => {
     document.title = "Dashboard";
@@ -40,6 +34,15 @@ export const Dashboard = (props) => {
         console.log(err);
       })
       .finally(setLoading(false));
+  };
+
+  const Clock = () => {
+    setHeaderTitle("Dashboard");
+    return (
+      <div className="clock_div">
+        <DigitalClock />
+      </div>
+    );
   };
 
   return (
@@ -76,16 +79,16 @@ export const Dashboard = (props) => {
             )}
           </div>
         </div>
+
         <Routes>
-          <Route
-            path="/"
-            Component={() => {
-              setHeaderTitle("Dashboard");
-            }}
-          />
+          <Route path="/" element={<Clock />} />
           <Route
             path="/courses"
             element={<ShowCourses setHeaderTitle={setHeaderTitle} />}
+          />
+          <Route
+            path="/courses/add"
+            element={<AddCourse setHeaderTitle={setHeaderTitle} />}
           />
         </Routes>
       </div>

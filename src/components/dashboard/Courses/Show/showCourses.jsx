@@ -32,7 +32,6 @@ export const ShowCourses = (props) => {
     })
       .then((res) => {
         console.log(res.data);
-        setRefresh(!refresh);
       })
       .catch((err) => {
         alert("Error fetching courses");
@@ -41,9 +40,9 @@ export const ShowCourses = (props) => {
       })
       .finally(() => {
         setUpdateCourse(false);
-        // setUpdateCourseData({});
         setNewData("");
         setLoader(false);
+        setRefresh(!refresh);
       });
   };
 
@@ -59,14 +58,40 @@ export const ShowCourses = (props) => {
         setCourses(res.data);
       })
       .catch((err) => {
-        alert("Error fetching courses");
+        alert("Error updating course");
         console.log(err);
         return;
       })
       .finally(() => {});
   }, [refresh]);
 
-  props.setHeaderTitle("Courses");
+  props.setHeaderTitle("Course Catalog");
+
+  const DeleteCourse = (course) => {
+    setLoader(true);
+    axios({
+      method: "DELETE",
+      url: API_URL + "/delete-course/" + course.course_name,
+      headers: {
+        Token: getCookie("token"),
+      },
+    })
+      .then((res) => {
+        console.log(res.data);
+        setRefresh(!refresh);
+      })
+      .catch((err) => {
+        alert("Error:"+ err.response.data.Message);
+        console.log();
+        return;
+      })
+      .finally(() => {
+        setLoader(false);
+        setRefresh(!refresh);
+        setUpdateCourse(false);
+        setNewData("");
+      });
+  };
 
   return (
     <>
@@ -79,7 +104,7 @@ export const ShowCourses = (props) => {
         <div className={`pop_up_overlay ${updateCourse ? "open" : ""}`}>
           <div className={`updateCoursePopUp`}>
             <div className="button_div">
-              <h2>Update Course</h2>
+              <h2>Edit Course</h2>
               <button
                 className="close"
                 onClick={() => {
@@ -90,7 +115,6 @@ export const ShowCourses = (props) => {
               </button>
             </div>
             <div className="div_form">
-              {console.log(updateCourseData)}
               <input
                 type="form"
                 placeholder={updateCourseData.course_name}
@@ -100,14 +124,24 @@ export const ShowCourses = (props) => {
                   setNewData(e.target.value);
                 }}
               />
-              <button
-                className="update_button"
-                onClick={() => {
-                  UpdateCourse(updateCourseData);
-                }}
-              >
-                Update
-              </button>
+              <div className="button_div_1">
+                <button
+                  className="update_button"
+                  onClick={() => {
+                    UpdateCourse(updateCourseData);
+                  }}
+                >
+                  Update
+                </button>
+                <button
+                  className="delete_button"
+                  onClick={() => {
+                    DeleteCourse(updateCourseData);
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -125,9 +159,8 @@ export const ShowCourses = (props) => {
                   setUpdateCourseData(course);
                 }}
               >
-                Update
+                Edit
               </button>
-              <button className="bt">Delete</button>
             </div>
           );
         })}

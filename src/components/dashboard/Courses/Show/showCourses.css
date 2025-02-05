@@ -3,7 +3,7 @@
   /* justify-content: center; */
   align-items: center;
   flex-direction: column;
-  height: 80vh;
+  height: calc(100vh - 6rem);
   /* bottom: 0%; */
   overflow-y: scroll;
   position: relative;
@@ -87,9 +87,8 @@
   justify-content: end;
   align-items: center;
   background-color: #2f2f2f;
-  height: 2.7rem;
   /* padding: 1rem 0; */
-  /* height: 3rem; */
+  height: 3rem;
 }
 .button_div h2 {
   color: white;
@@ -98,16 +97,15 @@
 }
 .close {
   width: 2.7rem;
-  height: 2.7rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
+  height: 2.6rem;
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
   background-color: #c84e1e;
-  border: 1px solid black;
-  border-radius: 5px;
+  border: none;
+  border-radius: 0 5px 0 0;
   cursor: pointer;
-  /* position: absolute; */
+  position: absolute;
   right: 0%;
   font-size: large;
   transition: 0.3s all ease;
@@ -182,4 +180,26 @@
 .update_button:hover {
   background-color: #00ff00;
   transition: 0.3s all ease;
+}
+
+.delete_button{
+  font-size: 1rem;
+  padding: 0.5rem;
+  border-radius: 6px;
+  outline: none;
+  border: 2px solid black;
+  cursor: pointer;
+  background-color: rgb(255, 75, 75);
+  transition: 0.3s all ease;
+}
+.delete_button:hover {
+  background-color: #ff0000;
+  transition: 0.3s all ease;
+}
+
+.button_div_1{
+  gap: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }

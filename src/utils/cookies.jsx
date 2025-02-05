@@ -21,7 +21,6 @@ export async function validateCookie(token) {
     return false;
   } catch (err) {
     console.error(err);
-    alert("Session expired. Please login again");
     return false;
   }
 }
