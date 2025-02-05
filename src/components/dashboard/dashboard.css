@@ -5,6 +5,11 @@
   width: 100vw;
 }
 
+.dashboard_header_wording{
+  font-size: 2.4rem;
+  margin: 0%;
+  padding: 0%;
+}
 
 .dashboard_header {
   display: flex;
@@ -18,12 +23,12 @@
   color: black;
   text-align: center;
   border-bottom: 3px double #272727;
+  position: relative;
 }
 
 .dashboard_header_title {
   position: absolute;
   justify-content: center;
-  font-size: 2.4rem;
 }
 .dashboard_header_logout {
   position: absolute;

@@ -1,7 +1,7 @@
 import axios from "axios";
 import { API_URL } from "../config/config.jsx";
 
-function getCookie(name) {
+export function getCookie(name) {
   var nameEQ = name + "=";
   var ca = document.cookie.split(";");
   for (var i = 0; i < ca.length; i++) {
@@ -21,8 +21,8 @@ export async function validateCookie(token) {
     return false;
   } catch (err) {
     console.error(err);
+    alert("Session expired. Please login again");
     return false;
   }
 }
 
-export default getCookie;

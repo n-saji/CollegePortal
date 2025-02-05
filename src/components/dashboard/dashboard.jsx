@@ -9,23 +9,35 @@ import { SideBar } from "./sidebar/sidebar.jsx";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 import { ShowCourses } from "./Courses/Show/showCourses.jsx";
 
-const validateCookieStatus = (cToken) => {
-  if (cToken === "") {
-    return false;
-  }
+// const validateCookieStatus = (cToken) => {
+//   if (cToken === "") {
+//     return false;
+//   }
 
-  validateCookie(cToken).then((res) => {
-    if (res === false) {
-      return false;
-    }
-  });
-  return true;
-};
+//   validateCookie(cToken)
+//     .then((res) => {
+//       if (res === false) {
+//         return false;
+//       }
+//     })
+//     .catch((err) => {
+//       console.error(err);
+//       return false;
+//     });
+//   return true;
+// };
 
 export const Dashboard = (props) => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
+  const [header_title, setHeaderTitle] = useState("Dashboard");
+
+  // if (!validateCookieStatus(props.cToken)) {
+  //   props.setNavigateToDashboard(false);
+  //   console.log("Session expired. Please login again");
+  //   <Link to="/" />;
+  // }
 
   useEffect(() => {
     document.title = "Dashboard";
@@ -34,10 +46,6 @@ export const Dashboard = (props) => {
       setUsername(localStorage.getItem("username"));
     });
   }, []);
-
-  if (!validateCookieStatus(props.cToken)) {
-    props.setNavigateToDashboard(false);
-  }
 
   const logOut = () => {
     axios
@@ -51,16 +59,14 @@ export const Dashboard = (props) => {
       .finally(setLoading(false));
   };
 
-  const DefaultProfile = () => {
-    return <></>;
-  };
-
   return (
     <>
       <div className="dashboard">
         <SideBar />
         <div className="dashboard_header">
-          <div className="dashboard_header_title">Dashboard</div>
+          <div className="dashboard_header_title">
+            <h1 className="dashboard_header_wording">{header_title}</h1>
+          </div>
           <div
             className="dashboard_header_logout"
             onClick={() => {
@@ -88,8 +94,16 @@ export const Dashboard = (props) => {
           </div>
         </div>
         <Routes>
-          <Route path="/" />
-          <Route path="/courses" element={<ShowCourses />} />
+          <Route
+            path="/"
+            Component={() => {
+              setHeaderTitle("Dashboard");
+            }}
+          />
+          <Route
+            path="/courses"
+            element={<ShowCourses setHeaderTitle={setHeaderTitle} />}
+          />
         </Routes>
       </div>
     </>

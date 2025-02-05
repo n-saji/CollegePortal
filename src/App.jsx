@@ -5,10 +5,8 @@ import { useState, useEffect } from "react";
 import LandingPage from "./components/landingPage/landingPage.jsx";
 import { Dashboard } from "./components/dashboard/dashboard.jsx";
 
-// import { API_URL } from "./config/config.jsx";
-import Cookie from "./utils/cookies.jsx";
 import { GetUserName } from "./utils/helper.jsx";
-import { validateCookie } from "./utils/cookies.jsx";
+import { getCookie, validateCookie } from "./utils/cookies.jsx";
 
 function App() {
   const [token, setToken] = useState("");
@@ -19,11 +17,11 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (Cookie("token") === "") {
+    if (getCookie("token") === "") {
       return;
     }
-    const c_Token = Cookie("token");
-    const c_account_id = Cookie("account_id");
+    const c_Token = getCookie("token");
+    const c_account_id = getCookie("account_id");
 
     setToken(c_Token);
     setAccount_id(c_account_id);
@@ -31,11 +29,15 @@ function App() {
     if (c_Token === "") {
       setNavigateToDashboard(false);
     }
-    if (!validateCookie(c_Token)) {
-      setNavigateToDashboard(false);
-    } else {
-      setNavigateToDashboard(true);
-    }
+    validateCookie(c_Token)
+      .then((res) => {
+        if (!res) setNavigateToDashboard(false);
+        else setNavigateToDashboard(true);
+      })
+      .catch((err) => {
+        console.error(err);
+        setNavigateToDashboard(false);
+      });
   }, []);
 
   return (

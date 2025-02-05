@@ -14,6 +14,6 @@ export const GetUserName = async (c_account_id, c_Token) => {
     })
     .catch((err) => {
       console.log(err);
-      alert("Session expired. Please login again");
+      
     });
 };
