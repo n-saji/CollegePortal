@@ -5,7 +5,6 @@ import { useState, useEffect } from "react";
 import LandingPage from "./components/landingPage/landingPage.jsx";
 import { Dashboard } from "./components/dashboard/dashboard.jsx";
 
-import { GetUserName } from "./utils/helper.jsx";
 import { getCookie, validateCookie } from "./utils/cookies.jsx";
 
 function App() {
@@ -17,27 +16,33 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (getCookie("token") === "") {
-      return;
-    }
-    const c_Token = getCookie("token");
-    const c_account_id = getCookie("account_id");
+    const checkTokenStatus = () => {
 
-    setToken(c_Token);
-    setAccount_id(c_account_id);
+      const c_Token = getCookie("token");
+      const c_account_id = getCookie("account_id");
 
-    if (c_Token === "") {
-      setNavigateToDashboard(false);
-    }
-    validateCookie(c_Token)
-      .then((res) => {
-        if (!res) setNavigateToDashboard(false);
-        else setNavigateToDashboard(true);
-      })
-      .catch((err) => {
-        console.error(err);
+      setToken(c_Token);
+      setAccount_id(c_account_id);
+
+      if (!c_Token) {
         setNavigateToDashboard(false);
-      });
+      }
+      validateCookie(c_Token)
+        .then((res) => {
+          if (!res) setNavigateToDashboard(false);
+          else setNavigateToDashboard(true);
+        })
+        .catch((err) => {
+          console.error(err);
+          setNavigateToDashboard(false);
+        });
+    };
+    checkTokenStatus();
+
+    const interval = setInterval(() => {
+      checkTokenStatus();
+    }, 5 * 60 * 1000);
+    return () => clearInterval(interval);
   }, []);
 
   return (

@@ -9,23 +9,6 @@ import { SideBar } from "./sidebar/sidebar.jsx";
 import { Routes, Route, Link, Navigate } from "react-router-dom";
 import { ShowCourses } from "./Courses/Show/showCourses.jsx";
 
-// const validateCookieStatus = (cToken) => {
-//   if (cToken === "") {
-//     return false;
-//   }
-
-//   validateCookie(cToken)
-//     .then((res) => {
-//       if (res === false) {
-//         return false;
-//       }
-//     })
-//     .catch((err) => {
-//       console.error(err);
-//       return false;
-//     });
-//   return true;
-// };
 
 export const Dashboard = (props) => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
