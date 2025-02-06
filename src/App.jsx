@@ -16,7 +16,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    const checkTokenStatus = () => {
+    const checkTokenStatus = async () => {
 
       const c_Token = getCookie("token");
       const c_account_id = getCookie("account_id");
@@ -27,16 +27,22 @@ function App() {
       if (!c_Token) {
         setNavigateToDashboard(false);
       }
-      validateCookie(c_Token)
-        .then((res) => {
-          if (!res) setNavigateToDashboard(false);
-          else setNavigateToDashboard(true);
-        })
-        .catch((err) => {
-          console.error(err);
-          setNavigateToDashboard(false);
-        });
+      try {
+        validateCookie(c_Token)
+          .then((res) => {
+            if (!res) setNavigateToDashboard(false);
+            else setNavigateToDashboard(true);
+          })
+          .catch((err) => {
+            console.error(err);
+            setNavigateToDashboard(false);
+          });
+      } catch (err) {
+        console.error(err);
+        setNavigateToDashboard(false);
+      }
     };
+    
     checkTokenStatus();
 
     const interval = setInterval(() => {

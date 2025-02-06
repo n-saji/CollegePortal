@@ -4,5 +4,5 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: 'https://orca-app-pjpyz.ondigitalocean.app/',
+  base: 'https://n-saji.github.io/CollegePortal/',
 })
