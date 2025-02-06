@@ -89,7 +89,6 @@ export const Dashboard = () => {
             path={`courses/add`}
             element={<AddCourse setHeaderTitle={setHeaderTitle} />}
           />
-          <Route path="*" element={<Navigate to={`${BASE_URL}/dashboard`} />} />
         </Routes>
       </div>
     </>
