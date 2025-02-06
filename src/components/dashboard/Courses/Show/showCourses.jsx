@@ -159,7 +159,7 @@ export const ShowCourses = (props) => {
                   setUpdateCourseData(course);
                 }}
               >
-                Edit
+                <img src="https://img.icons8.com/ios/20/edit--v1.png" />
               </button>
             </div>
           );
