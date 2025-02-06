@@ -1,7 +1,7 @@
 import axios from "axios";
 import "./dashboard.css";
 import { useEffect, useState } from "react";
-import { API_URL } from "../../config/config.jsx";
+import { API_URL, BASE_URL } from "../../config/config.jsx";
 import { GetUserName } from "../../utils/helper.jsx";
 import loader from "../../assets/loader.gif";
 import { SideBar } from "./sidebar/sidebar.jsx";
@@ -81,13 +81,13 @@ export const Dashboard = (props) => {
         </div>
 
         <Routes>
-          <Route path="/" element={<Clock />} />
+          <Route path={`${BASE_URL}`} element={<Clock />} />
           <Route
-            path="/courses"
+            path={`${BASE_URL}/courses`}
             element={<ShowCourses setHeaderTitle={setHeaderTitle} />}
           />
           <Route
-            path="/courses/add"
+            path={`${BASE_URL}/courses/add`}
             element={<AddCourse setHeaderTitle={setHeaderTitle} />}
           />
         </Routes>
