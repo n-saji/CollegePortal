@@ -4,5 +4,10 @@ import react from '@vitejs/plugin-react'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: 'https://orca-app-pjpyz.ondigitalocean.app/',
+  preview: {
+    port: 8080,  // Optional: Match your deployment port
+    host: true,  // Expose to the network
+    allowedHosts: ['collegeportal-qcs5o.ondigitalocean.app']
+  },
+  base: 'https://collegeportal-qcs5o.ondigitalocean.app/',
 })
