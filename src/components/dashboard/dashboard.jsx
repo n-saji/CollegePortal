@@ -2,15 +2,15 @@ import axios from "axios";
 import "./dashboard.css";
 import { useEffect, useState } from "react";
 import { API_URL, BASE_URL } from "../../config/config.jsx";
-import { GetUserName } from "../../utils/helper.jsx";
-import loader from "../../assets/loader.gif";
+
 import { SideBar } from "./sidebar/sidebar.jsx";
-import { Routes, Route, Link, Navigate } from "react-router-dom";
+import { Routes, Route, Link, Navigate,useNavigate } from "react-router-dom";
 import { ShowCourses } from "./Courses/Show/showCourses.jsx";
 import { AddCourse } from "./Courses/Add/AddCourse.jsx";
 import DigitalClock from "../Clock/digitalClock.jsx";
+import { getCookie } from "../../utils/cookies.jsx";
 
-export const Dashboard = (props) => {
+export const Dashboard = () => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
@@ -18,17 +18,16 @@ export const Dashboard = (props) => {
 
   useEffect(() => {
     document.title = "Dashboard";
-
-    GetUserName(props.c_account_id, props.cToken).then(() => {
-      setUsername(localStorage.getItem("username"));
-    });
+    setUsername(localStorage.getItem("username"));
   }, []);
 
   const logOut = () => {
     axios
-      .get(API_URL + `/logout?token=${props.cToken}`)
-      .then((res) => {
-        props.setNavigateToDashboard(false);
+      .get(API_URL + `/logout?token=${getCookie("token")}`)
+      .then(() => {
+        console.log("Logged out");
+        localStorage.clear();
+        window.location.href = BASE_URL; 
       })
       .catch((err) => {
         console.log(err);
@@ -81,15 +80,16 @@ export const Dashboard = (props) => {
         </div>
 
         <Routes>
-          <Route path={`${BASE_URL}`} element={<Clock />} />
+          <Route path={`*`} element={<Clock />} />
           <Route
-            path={`${BASE_URL}/courses`}
+            path={`courses`}
             element={<ShowCourses setHeaderTitle={setHeaderTitle} />}
           />
           <Route
-            path={`${BASE_URL}/courses/add`}
+            path={`courses/add`}
             element={<AddCourse setHeaderTitle={setHeaderTitle} />}
           />
+          <Route path="*" element={<Navigate to={`${BASE_URL}/dashboard`} />} />
         </Routes>
       </div>
     </>
