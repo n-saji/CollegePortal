@@ -5,7 +5,7 @@ import { BASE_URL } from "../../../config/config";
 import { Link } from "react-router-dom";
 
 export const SideBar = () => {
-  const [showSidePanel, setShowSidePanel] = useState(true);
+  const [showSidePanel, setShowSidePanel] = useState(false);
   const [showCourseDropdown, setShowCourseDropdown] = useState(false);
 
   return (
@@ -33,7 +33,7 @@ export const SideBar = () => {
           {showCourseDropdown && (
             <div className="dashboard_side_panel_course_dropdown ">
               <Link
-                to={`${BASE_URL}/courses/add`}
+                to={`${BASE_URL}/dashboard/courses/add`}
                 onClick={() => {
                   setShowSidePanel(false);
                 }}
@@ -42,7 +42,7 @@ export const SideBar = () => {
                 Add
               </Link>
               <Link
-                to={`${BASE_URL}/courses`}
+                to={`${BASE_URL}/dashboard/courses`}
                 onClick={() => {
                   setShowSidePanel(false);
                 }}
