@@ -1,13 +1,13 @@
 import "./App.css";
 import { useState, useEffect } from "react";
 import { Dashboard } from "./components/dashboard/dashboard.jsx";
+import { Signup } from "./components/SignUp/signup.jsx";
 
 import { Route, Routes, Link, Navigate } from "react-router-dom";
 import { BASE_URL, API_URL } from "./config/config.jsx";
 import axios from "axios";
 import { getCookie, validateCookie } from "./utils/cookies";
 import { GetUserName } from "./utils/helper";
-import { Signup } from "./components/signup/signup";
 
 const checkTokenStatus = async () => {
   try {
