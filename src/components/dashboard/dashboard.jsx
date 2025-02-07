@@ -27,7 +27,7 @@ export const Dashboard = () => {
       .then(() => {
         console.log("Logged out");
         localStorage.clear();
-        window.location.href = BASE_URL; 
+        window.location.href = "/"; 
       })
       .catch((err) => {
         console.log(err);
