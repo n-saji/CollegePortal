@@ -8,6 +8,32 @@ import axios from "axios";
 import { getCookie, validateCookie } from "./utils/cookies";
 import { GetUserName } from "./utils/helper";
 
+const checkTokenStatus = async () => {
+  try {
+    if (!getCookie("token")) {
+      return;
+    }
+    await validateCookie(getCookie("token"))
+      .then((res) => {
+        if (res) {
+          setLoginStatus(true);
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  } catch (err) {
+    console.error(err);
+    return;
+  }
+
+  const interval = setInterval(() => {
+    checkTokenStatus();
+  }, 5 * 60 * 1000);
+
+  return () => clearInterval(interval);
+};
+
 const LandingPage = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -18,6 +44,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     document.title = "University Portal";
+    checkTokenStatus();
   }, []);
 
   const updateTitle = async () => {
@@ -36,36 +63,6 @@ const LandingPage = () => {
       console.error(err);
     }
   };
-
-  useEffect(() => {
-    const checkTokenStatus = async () => {
-      try {
-        if (!getCookie("token")) {
-          return;
-        }
-        await validateCookie(getCookie("token"))
-          .then((res) => {
-            if (res) {
-              setLoginStatus(true);
-            }
-          })
-          .catch((err) => {
-            console.error(err);
-          });
-      } catch (err) {
-        console.error(err);
-        return;
-      }
-    };
-
-    checkTokenStatus();
-
-    const interval = setInterval(() => {
-      checkTokenStatus();
-    }, 5 * 60 * 1000);
-
-    return () => clearInterval(interval);
-  }, []);
 
   useEffect(() => {
     const date = new Date();
