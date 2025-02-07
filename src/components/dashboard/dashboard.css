@@ -43,6 +43,7 @@
   align-items: center;
   gap: 0.5rem;
   padding: 0 0.5rem;
+  z-index: 1;
 }
 .dashboard_header_logout:hover {
   color: dimgrey;
