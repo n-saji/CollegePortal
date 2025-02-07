@@ -15,7 +15,7 @@ export const SideBar = () => {
     >
       <div className="dashboard_side_panel_content">
         <Link
-          to={ `${BASE_URL}`}
+          to={ `${BASE_URL}/dashboard`}
           onClick={() => setShowSidePanel(false)}
           className="dashboard_side_panel_link underline"
         >
