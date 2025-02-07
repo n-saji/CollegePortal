@@ -7,6 +7,7 @@ import { BASE_URL, API_URL } from "./config/config.jsx";
 import axios from "axios";
 import { getCookie, validateCookie } from "./utils/cookies";
 import { GetUserName } from "./utils/helper";
+import { Signup } from "./components/signup/signup";
 
 const checkTokenStatus = async () => {
   try {
@@ -156,7 +157,9 @@ const LandingPage = () => {
             </div>
             <div className="form_submit">
               <button onClick={handleLogin}>Login</button>
-              <button>Sign Up</button>
+              <Link to={`${BASE_URL}/signup`}>
+                <button>Sign Up</button>
+              </Link>
             </div>
           </div>
         </div>
@@ -171,6 +174,7 @@ function App() {
       <Routes>
         <Route path={`${BASE_URL}`} element={<LandingPage />} />
         <Route path={`${BASE_URL}/dashboard/*`} element={<Dashboard />} />
+        <Route path={`${BASE_URL}/signup`} element={<Signup />} />
       </Routes>
     </>
   );

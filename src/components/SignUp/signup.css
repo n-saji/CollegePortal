@@ -1,0 +1,101 @@
+.sign_up_page_div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh;
+  background-color: #000000;
+  color: white;
+  width: 100%;
+}
+.sign_up_page_window {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 100%;
+}
+.sign_up_page_window_title {
+  color: white;
+  font-size: 1.5em;
+  border-bottom: 2px solid white;
+}
+.sign_up_page_window_form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 70%;
+  margin: 0 auto;
+  height: 70%;
+  border: 1.2px solid white;
+  border-radius: 10px;
+}
+.sign_up_page_window_form h2 {
+  color: white;
+  font-size: 2em;
+  margin: 0;
+  padding: 1rem 0;
+  font-weight: 500;
+}
+
+.return_to_login {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+.sign_up_page_window_form input {
+  width: 80%;
+  height: 40px;
+  /* margin: 10px 0; */
+  /* padding: 0 10px; */
+  border: none;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  color: white;
+  outline: none;
+  transition: all 0.3s ease;
+}
+.sign_up_page_window_form input::placeholder {
+  color: rgb(189, 189, 189);
+}
+
+.sign_up_page_window_form input:focus {
+  border-bottom: 1px solid #ff4500;
+}
+
+.sign_up_page_window_form button {
+  width: 100%;
+  height: 40px;
+  margin: 10px 0;
+  padding: 0 10px;
+  border: none;
+  border-radius: 10px;
+  background-color: #ff4500;
+  color: white;
+  outline: none;
+  cursor: pointer;
+}
+.sign_up_page_window_form button:hover {
+  background-color: #ff8c00;
+}
+.password_div {
+  display: flex;
+  /* justify-content: space-between; */
+  align-items: center;
+  width: 80%;
+  position: relative;
+}
+.password_div input {
+  width: 100%;
+}
+.password_div input[type="checkbox"] {
+  position: absolute;
+  right: 0;
+  height: 0.9rem;
+  width: 0.9rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
