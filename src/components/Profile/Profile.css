@@ -14,7 +14,7 @@
   flex-direction: column;
   /* justify-content: space-between; */
   align-items: center;
-  width: 70%;
+  width: 40%;
   margin: 0 auto;
   height: 70%;
   border: 1.2px solid white;
@@ -73,7 +73,7 @@
   transition: all 0.3s ease;
 }
 .profile_page_window_details input::placeholder {
-  color: white;
+  color: rgb(107, 107, 107);
 }
 .profile_page_window_details input:focus {
   outline: none;
@@ -97,7 +97,7 @@
 .button_container.edit {
   display: flex;
   gap: 1rem;
-  padding: 1rem;
+  padding: 2rem;
   width: 100%;
   justify-content: center;
 }
@@ -135,8 +135,7 @@
   height: 100vh;
   top: 0%;
   left: 0%;
-  background-color: #000000e3;
-
+  background-color: #000000af;
 }
 .update_password_form.show {
   visibility: visible;
@@ -145,17 +144,115 @@
   transform: scale(1);
 }
 
-.profile_page_window_loader{
+.profile_page_window_loader {
+  display: flex;
+  flex-direction: column;
+  height: 300px;
+  width: 400px;
+  top: 35%;
+  margin: 0 auto;
+  background-color: #5a5a5a;
+  border: 1px solid black;
+  border-radius: 5px;
+  z-index: 1;
+  position: fixed;
+  box-shadow: 2px 2px 10px black;
+}
+.update_Credentials_popup {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 400px;
+  width: 400px;
+  top: 35%;
+  margin: 0 auto;
+  background-color: #080202;
+  border: 1px solid rgb(255, 255, 255);
+  border-radius: 5px;
+  z-index: 1;
+  position: fixed;
+}
+.email_update_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.email_update_form p {
+  font-size: 1rem;
+}
+.email_update_form input {
+  width: 80%;
+  padding: 0.5rem;
+  border: none;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  color: white;
+  font-size: 1.2rem;
+  text-align: center;
+  outline: none;
+  transition: all 0.3s ease;
+}
+.password_update_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.password_update_form p {
+  font-size: 1rem;
+}
+.password_update_form input {
+  width: 80%;
+  padding: 0.5rem;
+  border: none;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  color: white;
+  font-size: 1.2rem;
+  outline: none;
+  transition: all 0.3s ease;
+}
+.password_new_div {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  gap: 1rem;
+  position: relative;
+  justify-content: center;
+}
+.password_new_div input {
+  width: 80%;
+  padding: 0.5rem;
+}
+.password_new_div input[type="checkbox"] {
+  width: 20px;
+  height: 20px;
+  padding: 0%;
+  margin: 0;
+  position: absolute;
+  right: 10%;
+}
+.button_forms{
     display: flex;
-    flex-direction: column;
-    height: 300px;
-    width: 400px;
-    top: 35%;
-    margin: 0 auto;
-    background-color: #5a5a5a;
-    border: 1px solid black;
+    gap: 1rem;
+    padding: 0 1rem;
+    width: 100%;
+    justify-content: center;
+}
+.button_forms .update_button{
+    background-color: green ;
+}
+.update_button:hover{
+    background-color: #00ff00;
+}
+.button_forms .cancel_button{
+    background-color: red;
     border-radius: 5px;
-    z-index: 1;
-    position: fixed;
-    box-shadow: 2px 2px 10px black;
+}
+.cancel_button:hover{
+    background-color: #ff6a00;
 }
