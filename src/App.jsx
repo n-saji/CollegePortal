@@ -8,6 +8,7 @@ import { BASE_URL, API_URL } from "./config/config.jsx";
 import axios from "axios";
 import { getCookie, validateCookie } from "./utils/cookies";
 import { GetUserName } from "./utils/helper";
+import { Profile } from "./components/Profile/profile.jsx";
 
 const checkTokenStatus = async (props) => {
   try {
@@ -178,6 +179,7 @@ function App() {
         <Route path={`${BASE_URL}`} element={<LandingPage />} />
         <Route path={`${BASE_URL}/dashboard/*`} element={<Dashboard />} />
         <Route path={`${BASE_URL}/signup`} element={<Signup />} />
+        <Route path={`${BASE_URL}/profile`} element={<Profile />} />
       </Routes>
     </>
   );
