@@ -53,7 +53,7 @@ export const Profile = () => {
         Token: getCookie("token"),
       },
       data: {
-        name: name,
+        instructor_name: name,
         department: department,
         instructor_code: code,
       },
