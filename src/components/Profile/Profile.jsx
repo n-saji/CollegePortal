@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { getCookie } from "../../utils/cookies";
 import editButton from "../../assets/edit.png";
+import { GetUserName } from "../../utils/helper";
 export const Profile = () => {
   useEffect(() => {
     document.title = "Profile";
@@ -60,7 +61,15 @@ export const Profile = () => {
     })
       .then((res) => {
         console.log(res.data);
-        alert("Profile Updated");
+
+        GetUserName(account_id, getCookie("token"))
+          .then(() => {
+            alert("Profile Updated Successfully");
+          })
+          .catch((err) => {
+            console.log(err);
+            alert("Profile Update Failed");
+          });
         return;
       })
       .catch((err) => {
