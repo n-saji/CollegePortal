@@ -136,18 +136,21 @@ export const Profile = () => {
               value={name}
               disabled={!editMode}
               onChange={(e) => setName(e.target.value)}
+              placeholder="Name"
             />
             <input
               type="text"
               value={department}
               disabled={!editMode}
               onChange={(e) => setDepartment(e.target.value)}
+              placeholder="Department"
             />
             <input
               type="text"
               value={code}
               disabled={!editMode}
               onChange={(e) => setCode(e.target.value)}
+              placeholder="Code"
             />
           </div>
           <div className={`button_container ${editMode ? "edit" : ""}`}>
@@ -179,54 +182,58 @@ export const Profile = () => {
                 updateCredentials ? "show" : ""
               }`}
             >
-              <div className="email_update_form">
-                <p>Email</p>
-                <input
-                  type="text"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-              </div>
-              <div className="password_update_form">
-                <p>Password</p>
-                <div className="password_new_div">
+              <div className="update_Credentials_popup">
+                <div className="email_update_form">
+                  <p>Email</p>
                   <input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="New Password"
-                    onChange={(e) => {
-                      setNewPassword(e.target.value);
-                    }}
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
+                </div>
+                <div className="password_update_form">
+                  <p>Password</p>
+                  <div className="password_new_div">
+                    <input
+                      type={showPassword ? "text" : "password"}
+                      placeholder="New Password"
+                      onChange={(e) => {
+                        setNewPassword(e.target.value);
+                      }}
+                    />
+                    <input
+                      type="checkbox"
+                      onClick={() => {
+                        setShowPassword(!showPassword);
+                      }}
+                    />
+                  </div>
                   <input
-                    type="checkbox"
-                    onClick={() => {
-                      setShowPassword(!showPassword);
+                    type="password"
+                    placeholder="Confirm Password"
+                    onChange={(e) => {
+                      setConfirmPassword(e.target.value);
                     }}
                   />
                 </div>
-                <input
-                  type="password"
-                  placeholder="Confirm Password"
-                  onChange={(e) => {
-                    setConfirmPassword(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="button_forms">
-                <button
-                  onClick={() => {
-                    handlePasswordUpdate();
-                  }}
-                >
-                  Update
-                </button>
-                <button onClick={() => setUpdateCredentials(false)}>
-                  Cancel
-                </button>
+                <div className="button_forms">
+                  <button
+                    onClick={() => {
+                      handlePasswordUpdate();
+                    }}
+                    className="update_button"
+                  >
+                    Update
+                  </button>
+                  <button
+                    onClick={() => setUpdateCredentials(false)}
+                    className="cancel_button"
+                  >
+                    Cancel
+                  </button>
+                </div>
               </div>
             </div>
-
-
           </div>
         </div>
       </div>
