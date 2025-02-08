@@ -7,6 +7,8 @@ import axios from "axios";
 import { getCookie } from "../../utils/cookies";
 import editButton from "../../assets/edit.png";
 import { GetUserName } from "../../utils/helper";
+import { LoaderOverlay } from "../Loader/Loader";
+
 export const Profile = () => {
   useEffect(() => {
     document.title = "Profile";
@@ -25,6 +27,7 @@ export const Profile = () => {
   const [loader, setLoader] = useState(false);
 
   useEffect(() => {
+    setLoader(true);
     axios({
       method: "GET",
       url: API_URL + "/view-profile-instructor/" + account_id,
@@ -42,7 +45,9 @@ export const Profile = () => {
         setName(res.data.Name);
       })
       .catch((err) => {})
-      .finally(() => {});
+      .finally(() => {
+        setLoader(false);
+      });
   }, []);
 
   const handleProfileUpdate = () => {
@@ -81,7 +86,6 @@ export const Profile = () => {
       });
   };
   const handlePasswordUpdate = () => {
-    setLoader(true);
     if (newPassword !== confirmPassword) {
       alert("Passwords do not match");
       return;
@@ -93,6 +97,7 @@ export const Profile = () => {
             id: account_id,
           }
         : { email_id: email, password: newPassword, id: account_id };
+    setLoader(true);
     axios({
       method: "PUT",
       url: API_URL + "/update-instructor-credentials",
@@ -119,6 +124,7 @@ export const Profile = () => {
 
   return (
     <>
+      {loader ? <LoaderOverlay /> : null}
       <div className="profile_page">
         <div className="profile_page_window">
           <div className="back_button">
@@ -176,7 +182,7 @@ export const Profile = () => {
               <button
                 disabled={!editMode}
                 onClick={() => {
-                  setEditMode(false);
+                  // setEditMode(false);
                   if (editMode) {
                     handleProfileUpdate();
                   }
