@@ -8,7 +8,7 @@ import { BASE_URL, API_URL } from "./config/config.jsx";
 import axios from "axios";
 import { getCookie, validateCookie } from "./utils/cookies";
 import { GetUserName } from "./utils/helper";
-import { Profile } from "./components/Profile/profile.jsx";
+import { Profile } from "./components/Profile/Profile.jsx";
 
 const checkTokenStatus = async (props) => {
   try {
