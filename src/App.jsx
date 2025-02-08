@@ -9,7 +9,7 @@ import axios from "axios";
 import { getCookie, validateCookie } from "./utils/cookies";
 import { GetUserName } from "./utils/helper";
 
-const checkTokenStatus = async () => {
+const checkTokenStatus = async (props) => {
   try {
     if (!getCookie("token")) {
       return;
@@ -17,7 +17,7 @@ const checkTokenStatus = async () => {
     await validateCookie(getCookie("token"))
       .then((res) => {
         if (res) {
-          setLoginStatus(true);
+          props.setLoginStatus(true);
         }
       })
       .catch((err) => {
@@ -29,7 +29,7 @@ const checkTokenStatus = async () => {
   }
 
   const interval = setInterval(() => {
-    checkTokenStatus();
+    checkTokenStatus({ setLoginStatus: props.setLoginStatus });
   }, 5 * 60 * 1000);
 
   return () => clearInterval(interval);
@@ -45,7 +45,7 @@ const LandingPage = () => {
 
   useEffect(() => {
     document.title = "University Portal";
-    checkTokenStatus();
+    checkTokenStatus({ setLoginStatus });
   }, []);
 
   const updateTitle = async () => {
@@ -59,7 +59,6 @@ const LandingPage = () => {
     try {
       await GetUserName(c_account_id, c_Token);
       setFetchedAllData(true);
-      console.log("updated username");
     } catch (err) {
       console.error(err);
     }
@@ -115,9 +114,13 @@ const LandingPage = () => {
     }
   };
 
+  useEffect(() => {
+    if (loginStatus && !fetechedAllData) {
+      updateTitle();
+    }
+  }, [loginStatus, fetechedAllData]);
+
   if (loginStatus) {
-    updateTitle();
-    console.log("login status is true");
     if (fetechedAllData) {
       return <Navigate to={`${BASE_URL}/dashboard`} />;
     }
