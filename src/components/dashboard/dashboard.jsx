@@ -19,7 +19,7 @@ export const Dashboard = () => {
   useEffect(() => {
     document.title = "Dashboard";
     setUsername(localStorage.getItem("username"));
-  }, []);
+  }, [localStorage.getItem("username")]);
 
   const logOut = () => {
     axios
