@@ -1,0 +1,161 @@
+.profile_page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #000000;
+  color: white;
+  width: 100%;
+}
+.profile_page_window {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-between; */
+  align-items: center;
+  width: 70%;
+  margin: 0 auto;
+  height: 70%;
+  border: 1.2px solid white;
+  border-radius: 10px;
+}
+.back_button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  cursor: pointer;
+}
+.edit_button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+}
+.edit_button img {
+  width: 80%;
+  height: 80%;
+}
+.profile_page_window_image {
+  border: 1px solid white;
+  border-radius: 100%;
+  width: 150px;
+  height: 150px;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  font-size: 5rem;
+  font-weight: 700;
+  margin: 2rem 0;
+}
+
+.profile_page_window_details {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  width: 100%;
+}
+.profile_page_window_details input {
+  width: 50%;
+  padding: 0.5rem;
+  border: none;
+  border-bottom: 1px solid white;
+  background-color: transparent;
+  color: white;
+  font-size: 1.2rem;
+  text-align: center;
+  outline: none;
+  transition: all 0.3s ease;
+}
+.profile_page_window_details input::placeholder {
+  color: white;
+}
+.profile_page_window_details input:focus {
+  outline: none;
+  border-bottom: 1px solid #ff4500;
+}
+.profile_page_window_details button {
+  padding: 0.5rem 1rem;
+  border: none;
+  background-color: #ff0000;
+  color: white;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+.profile_page_window_details.edit input {
+  border: 1px solid white;
+  transition: all 0.3s ease;
+}
+.button_container {
+  display: none;
+}
+.button_container.edit {
+  display: flex;
+  gap: 1rem;
+  padding: 1rem;
+  width: 100%;
+  justify-content: center;
+}
+.button_container button {
+  padding: 0.6rem 1rem;
+  border: none;
+  background-color: #ff0000;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.update_credentials_button:hover {
+  background-color: #ff4400;
+}
+.profile_page_window_submit button {
+  background-color: green;
+}
+.profile_page_window_submit button:hover {
+  background-color: #00ff00;
+}
+
+.update_password_form {
+  visibility: hidden;
+  transform: scale(0.8);
+  transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out,
+    visibility 0.3s;
+  opacity: 0;
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+  top: 0%;
+  left: 0%;
+  background-color: #000000e3;
+
+}
+.update_password_form.show {
+  visibility: visible;
+  transition: 0.3s all ease;
+  opacity: 1;
+  transform: scale(1);
+}
+
+.profile_page_window_loader{
+    display: flex;
+    flex-direction: column;
+    height: 300px;
+    width: 400px;
+    top: 35%;
+    margin: 0 auto;
+    background-color: #5a5a5a;
+    border: 1px solid black;
+    border-radius: 5px;
+    z-index: 1;
+    position: fixed;
+    box-shadow: 2px 2px 10px black;
+}

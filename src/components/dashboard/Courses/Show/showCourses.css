@@ -38,9 +38,6 @@
   border-radius: 5px;
   cursor: pointer;
 }
-/* .bt:hover {
-  background-color: #e6e6e6;
-} */
 
 .pop_up_overlay {
   visibility: hidden;
@@ -62,9 +59,6 @@
   visibility: visible;
   transition: 0.3s all ease;
   opacity: 1;
-}
-
-.pop_up_overlay.open {
   transform: scale(1);
 }
 .updateCoursePopUp {
@@ -182,7 +176,7 @@
   transition: 0.3s all ease;
 }
 
-.delete_button{
+.delete_button {
   font-size: 1rem;
   padding: 0.5rem;
   border-radius: 6px;
@@ -197,7 +191,7 @@
   transition: 0.3s all ease;
 }
 
-.button_div_1{
+.button_div_1 {
   gap: 1rem;
   width: 100%;
   display: flex;
