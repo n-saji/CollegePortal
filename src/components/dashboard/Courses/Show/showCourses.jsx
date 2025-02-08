@@ -3,6 +3,7 @@ import { API_URL } from "../../../../config/config.jsx";
 import { getCookie } from "../../../../utils/cookies.jsx";
 import { useEffect, useState } from "react";
 import "./showCourses.css";
+import { LoaderOverlay } from "../../../Loader/Loader.jsx";
 
 export const ShowCourses = (props) => {
   const [courses, setCourses] = useState([]);
@@ -47,6 +48,7 @@ export const ShowCourses = (props) => {
   };
 
   useEffect(() => {
+    setLoader(true);
     axios({
       method: "GET",
       url: API_URL + "/retrieve-all-courses",
@@ -62,7 +64,9 @@ export const ShowCourses = (props) => {
         console.log(err);
         return;
       })
-      .finally(() => {});
+      .finally(() => {
+        setLoader(false);
+      });
   }, [refresh]);
 
   props.setHeaderTitle("Course Catalog");
@@ -95,11 +99,7 @@ export const ShowCourses = (props) => {
 
   return (
     <>
-      {loader && (
-        <div className="loader_div">
-          <div className="loader"></div>
-        </div>
-      )}
+      {loader ? <LoaderOverlay /> : null}
       <div className="showCourses">
         <div className={`pop_up_overlay ${updateCourse ? "open" : ""}`}>
           <div className={`updateCoursePopUp`}>
