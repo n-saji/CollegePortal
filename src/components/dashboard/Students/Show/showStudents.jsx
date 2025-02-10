@@ -41,6 +41,80 @@ export const ShowStudents = (props) => {
   return (
     <>
       <div className="show_students">
+        <div className={`overlay-right ${showActions ? "active" : ""}`}>
+          <div className="overlay-right-content">
+            <div className="overlay-right-close">
+              <button
+                onClick={() => {
+                  setShowActions(!showActions);
+                }}
+              >
+                X
+              </button>
+            </div>
+            <p>Sort By</p>
+            <button
+              className="bt-overlay-right-content"
+              onClick={() => {
+                setOrder("name");
+                setRefresh((prev) => !prev);
+                setShowActions(false);
+              }}
+            >
+              Name
+            </button>
+            <button
+              className="bt-overlay-right-content"
+              onClick={() => {
+                setOrder("roll_number");
+                setRefresh((prev) => !prev);
+                setShowActions(false);
+              }}
+            >
+              Roll Number
+            </button>
+            <button
+              className="bt-overlay-right-content"
+              onClick={() => {
+                setOrder("age");
+                setRefresh((prev) => !prev);
+                setShowActions(false);
+              }}
+            >
+              Age
+            </button>
+            <button
+              className="bt-overlay-right-content"
+              onClick={() => {
+                setOrder("course_name");
+                setRefresh((prev) => !prev);
+                setShowActions(false);
+              }}
+            >
+              Course
+            </button>
+            <button
+              className="bt-overlay-right-content"
+              onClick={() => {
+                setOrder("marks");
+                setRefresh((prev) => !prev);
+                setShowActions(false);
+              }}
+            >
+              Marks
+            </button>
+            <button
+              className="bt-overlay-right-content"
+              onClick={() => {
+                setOrder("grade");
+                setRefresh((prev) => !prev);
+                setShowActions(false);
+              }}
+            >
+              Grade
+            </button>
+          </div>
+        </div>
         {loader ? <LoaderOverlay /> : null}
         <div className="students-table">
           <table>
@@ -61,31 +135,6 @@ export const ShowStudents = (props) => {
                         setShowActions(!showActions);
                       }}
                     />
-                    <div
-                      className={`overlay_student_table_order ${
-                        showActions ? "active" : ""
-                      }`}
-                    >
-                      <div>
-                        <div>
-                          <select
-                            onChange={(e) => {
-                              const selectedValue = e.target.value;
-                              setOrder(selectedValue);
-                              setRefresh((prev) => !prev);
-                              setShowActions(false);
-                            }}
-                          >
-                            <option value="name">Name</option>
-                            <option value="roll_number">Roll Number</option>
-                            <option value="age">Age</option>
-                            <option value="course_name">Course</option>
-                            <option value="marks">Marks</option>
-                            <option value="grade">Grade</option>
-                          </select>
-                        </div>
-                      </div>
-                    </div>
                   </div>
                 </th>
               </tr>
@@ -116,24 +165,3 @@ export const ShowStudents = (props) => {
     </>
   );
 };
-
-// {
-//     "Id": "144d3d4d-b5de-489d-b93c-447d8622df10",
-//     "Name": "GST",
-//     "RollNumber": "12",
-//     "Age": 123,
-//     "CourseId": "18753ed0-e06c-4734-bc4d-320c79ea843d",
-//     "MarksId": "3f9eb0c6-0139-4568-b1e2-7807c9febc50",
-//     "ClassesEnrolled": {
-//         "Id": "18753ed0-e06c-4734-bc4d-320c79ea843d",
-//         "course_name": "Math"
-//     },
-//     "StudentMarks": {
-//         "Id": "3f9eb0c6-0139-4568-b1e2-7807c9febc50",
-//         "StudentId": "144d3d4d-b5de-489d-b93c-447d8622df10",
-//         "CourseId": "18753ed0-e06c-4734-bc4d-320c79ea843d",
-//         "CourseName": "Math",
-//         "Marks": 0,
-//         "Grade": "nil"
-//     }
-// }
