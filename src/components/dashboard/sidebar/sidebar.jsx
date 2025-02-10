@@ -15,20 +15,20 @@ export const SideBar = () => {
     >
       <div className="dashboard_side_panel_content">
         <Link
-          to={ `${BASE_URL}/dashboard`}
+          to={`${BASE_URL}/dashboard`}
           onClick={() => setShowSidePanel(false)}
-          className="dashboard_side_panel_link underline"
+          className="p_affect"
         >
           Home
         </Link>
-        <div>
+        <div className="dashboard_panel_with_dropdown">
           <p
             onClick={() => {
               setShowCourseDropdown(!showCourseDropdown);
             }}
-            className="underline"
+            className={`p_affect ${showCourseDropdown ? "active" : ""}`}
           >
-            Course {showCourseDropdown ? <span>-</span> : <span>+</span>}
+            Course
           </p>
           {showCourseDropdown && (
             <div className="dashboard_side_panel_course_dropdown ">
@@ -37,7 +37,7 @@ export const SideBar = () => {
                 onClick={() => {
                   setShowSidePanel(false);
                 }}
-                className="dashboard_side_panel_dropdown_link dropdwon_underline"
+                className="dashboard_side_panel_dropdown_link dropdown_underline"
               >
                 Add
               </Link>
@@ -46,7 +46,7 @@ export const SideBar = () => {
                 onClick={() => {
                   setShowSidePanel(false);
                 }}
-                className="dashboard_side_panel_dropdown_link dropdwon_underline"
+                className="dashboard_side_panel_dropdown_link dropdown_underline"
               >
                 Display
               </Link>
@@ -54,8 +54,8 @@ export const SideBar = () => {
           )}
         </div>
 
-        <p className="underline">Students</p>
-        <p className="underline">Instructors</p>
+        <p className="p_affect">Students</p>
+        <p className="p_affect">Instructors</p>
       </div>
       <button
         className="dashboard_side_panel_toggle_button"
