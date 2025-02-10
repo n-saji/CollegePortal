@@ -4,17 +4,19 @@ import { useEffect, useState } from "react";
 import { API_URL, BASE_URL } from "../../config/config.jsx";
 
 import { SideBar } from "./sidebar/sidebar.jsx";
-import { Routes, Route, Link, Navigate,useNavigate } from "react-router-dom";
+import { Routes, Route, Link, Navigate, useNavigate } from "react-router-dom";
 import { ShowCourses } from "./Courses/Show/showCourses.jsx";
 import { AddCourse } from "./Courses/Add/AddCourse.jsx";
 import DigitalClock from "../Clock/digitalClock.jsx";
 import { getCookie } from "../../utils/cookies.jsx";
+import Hamburger from "../../assets/hamburger.png";
 
 export const Dashboard = () => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
   const [username, setUsername] = useState("");
   const [loading, setLoading] = useState(true);
   const [header_title, setHeaderTitle] = useState("Dashboard");
+  const [showSidePanel, setShowSidePanel] = useState(false);
 
   useEffect(() => {
     document.title = "Dashboard";
@@ -27,7 +29,7 @@ export const Dashboard = () => {
       .then(() => {
         console.log("Logged out");
         localStorage.clear();
-        window.location.href = "/"; 
+        window.location.href = "/";
       })
       .catch((err) => {
         console.log(err);
@@ -47,8 +49,19 @@ export const Dashboard = () => {
   return (
     <>
       <div className="dashboard">
-        <SideBar />
+        <SideBar show={{ setShowSidePanel, showSidePanel }} />
         <div className="dashboard_header">
+          <div className="dashboard_header_toggle">
+            <img
+              src={Hamburger}
+              alt="hamburger"
+              className="dashboard_side_panel_toggle_img"
+              onClick={() => {
+                setShowSidePanel(!showSidePanel);
+              }}
+            />
+          </div>
+
           <div className="dashboard_header_title">
             <h1 className="dashboard_header_wording">{header_title}</h1>
           </div>
