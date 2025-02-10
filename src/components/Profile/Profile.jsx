@@ -68,9 +68,6 @@ export const Profile = () => {
         console.log(res.data);
 
         GetUserName(account_id, getCookie("token"))
-          .then(() => {
-            alert("Profile Updated Successfully");
-          })
           .catch((err) => {
             console.log(err);
             alert("Profile Update Failed");
