@@ -1,22 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./sidebar.css";
 import { BASE_URL } from "../../../config/config";
 
 import { Link } from "react-router-dom";
 
-export const SideBar = () => {
-  const [showSidePanel, setShowSidePanel] = useState(false);
+export const SideBar = (props) => {
   const [showCourseDropdown, setShowCourseDropdown] = useState(false);
+
 
   return (
     <div
       className="dashboard_side_panel"
-      style={{ translate: showSidePanel ? "0" : "-18rem" }}
+      style={{ translate: props.show.showSidePanel ? "0" : "-18rem" }}
     >
       <div className="dashboard_side_panel_content">
         <Link
           to={`${BASE_URL}/dashboard`}
-          onClick={() => setShowSidePanel(false)}
+          onClick={() => props.show.setShowSidePanel(false)}
           className="p_affect"
         >
           Home
@@ -39,7 +39,7 @@ export const SideBar = () => {
             <Link
               to={`${BASE_URL}/dashboard/courses/add`}
               onClick={() => {
-                setShowSidePanel(false);
+                props.show.setShowSidePanel(false);
               }}
               className="dashboard_side_panel_dropdown_link dropdown_underline"
             >
@@ -48,7 +48,7 @@ export const SideBar = () => {
             <Link
               to={`${BASE_URL}/dashboard/courses`}
               onClick={() => {
-                setShowSidePanel(false);
+                props.show.setShowSidePanel(false);
               }}
               className="dashboard_side_panel_dropdown_link dropdown_underline"
             >
@@ -60,12 +60,6 @@ export const SideBar = () => {
         <p className="p_affect">Students</p>
         <p className="p_affect">Instructors</p>
       </div>
-      <button
-        className="dashboard_side_panel_toggle_button"
-        onClick={() => setShowSidePanel(!showSidePanel)}
-      >
-        {showSidePanel ? "<" : ">"}
-      </button>
     </div>
   );
 };
