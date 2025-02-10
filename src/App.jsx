@@ -9,6 +9,7 @@ import axios from "axios";
 import { getCookie, validateCookie } from "./utils/cookies";
 import { GetUserName } from "./utils/helper";
 import { Profile } from "./components/Profile/Profile.jsx";
+import { LoaderOverlay } from "./components/Loader/Loader.jsx";
 
 const checkTokenStatus = async (props) => {
   try {
@@ -43,6 +44,7 @@ const LandingPage = () => {
   const [greeting, setGreeting] = useState("");
   const [loginStatus, setLoginStatus] = useState(false);
   const [fetechedAllData, setFetchedAllData] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     document.title = "University Portal";
@@ -82,6 +84,7 @@ const LandingPage = () => {
     if (email === "" || password === "") {
       alert("Please enter email and password");
     } else {
+      setLoading(true);
       axios({
         method: "POST",
         url: API_URL + "/v1/login",
@@ -101,7 +104,7 @@ const LandingPage = () => {
             alert(err.response.data);
             return;
           }
-
+          setLoading(false);
           alert("Something went wrong");
         });
     }
@@ -123,12 +126,14 @@ const LandingPage = () => {
 
   if (loginStatus) {
     if (fetechedAllData) {
+      () => setLoading(false);
       return <Navigate to={`${BASE_URL}/dashboard`} />;
     }
   }
 
   return (
     <>
+      {loading && <LoaderOverlay text={"Redirecting..."} />}
       <div className="mobile_view">
         <h1>Mobile View Not Supported</h1>
       </div>
