@@ -1,33 +1,52 @@
-.add_student{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 0.3rem;
-
+.add_student {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 6rem);
+  width: 100%;
 }
-.add_student_button{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-    position: relative;
+.add_student_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 60vh;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 10px;
 }
-.overlay_student_add{
-    position: absolute;
-    display: none;
-    background-color: #f9f9f9;
-    width: 100%;
-    height: 1rem;
-    z-index: 1;
-    top: 2rem;
-    left: 1rem;
-    justify-content: center;
-    align-items: center;
+.add_student_form_input {
+  width: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 5rem;
+  padding: 0.6rem 0;
+  font-size: 1.3rem;
 }
-.overlay_student_add.active{
-    display: flex;
+.add_student_form_input input {
+  width: 100%;
+  height: 1rem;
+  border: none;
+  border-bottom: 1px solid rgb(0, 0, 0);
+  padding: 0.5rem;
+  outline: none;
 }
-.add_student_button img{
-    height: 1.5rem;
-    width: 1.5rem;
+.add_student_form_button button {
+  background-color: seagreen;
+  color: white;
+  padding: 0.4rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.add_student_form_button button:hover {
+  background-color: rgb(0, 100, 0);
+}
+.add_student_form_input select {
+  text-align: center;
+  padding: 0.4rem;
+  width: 100%;
+  font-size: 0.9rem;
 }

@@ -14,6 +14,7 @@ export const AddStudent = (props) => {
   const [age, setAge] = useState("");
   const [course, setCourse] = useState("");
   const [courses, setCourses] = useState([]);
+  const [refresh, setRefresh] = useState(false);
 
   useEffect(() => {
     document.title = "Add Student";
@@ -45,6 +46,12 @@ export const AddStudent = (props) => {
       alert("Please fill all the fields");
       return;
     }
+
+    if (isNaN(age) || age < 0 || age > 100) {
+      alert("Age should be a number");
+      return;
+    }
+
     setLoader(true);
     axios({
       method: "POST",
@@ -63,13 +70,19 @@ export const AddStudent = (props) => {
     })
       .then((res) => {
         console.log(res);
-        setLoader(false);
-        props.setRefresh(!props.refresh);
       })
       .catch((err) => {
         alert("Error adding student: " + err.response.data);
         console.log(err);
         setLoader(false);
+      })
+      .finally(() => {
+        setLoader(false);
+        setRefresh(!refresh);
+        setAge("");
+        setName("");
+        setRollNumber("");
+        setCourse("");
       });
   };
 
@@ -113,7 +126,9 @@ export const AddStudent = (props) => {
           </div>
 
           <div className="add_student_form_button">
-            <button onClick={handleAddStudent}>Add Student</button>
+            <button onClick={handleAddStudent} disabled={loader}>
+              {loader ? "Processing" : "Add Student"}
+            </button>
           </div>
         </div>
       </div>
