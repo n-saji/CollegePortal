@@ -1,0 +1,33 @@
+.add_student{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.3rem;
+
+}
+.add_student_button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: relative;
+}
+.overlay_student_add{
+    position: absolute;
+    display: none;
+    background-color: #f9f9f9;
+    width: 100%;
+    height: 1rem;
+    z-index: 1;
+    top: 2rem;
+    left: 1rem;
+    justify-content: center;
+    align-items: center;
+}
+.overlay_student_add.active{
+    display: flex;
+}
+.add_student_button img{
+    height: 1.5rem;
+    width: 1.5rem;
+}

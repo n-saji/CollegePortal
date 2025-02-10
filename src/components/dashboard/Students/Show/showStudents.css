@@ -1,0 +1,72 @@
+.students-table {
+  width: 100%;
+  border-collapse: collapse;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-x: auto;
+  position: relative;
+}
+.dev_action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+}
+.edit_table_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
+.overlay_student_table_order {
+  position: absolute;
+  display: none;
+  background-color: #f9f9f9;
+  width: 100%;
+  height: 1rem;
+  z-index: 1;
+  top: 2rem;
+  left: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+.overlay_student_table_order.active {
+  display: flex;
+}
+.edit_table_button img {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.students-table table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.students-table th {
+  background-color: #f2f2f2;
+  color: #333;
+  font-weight: bold;
+  text-align: center;
+  padding: 8px;
+}
+.students-table td {
+  padding: 8px;
+  border-bottom: 1px solid #f2f2f2;
+  text-align: center;
+}
+
+.action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bt {
+  height: 1.5rem;
+  width: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
