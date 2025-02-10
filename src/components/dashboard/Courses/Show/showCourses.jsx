@@ -99,7 +99,7 @@ export const ShowCourses = (props) => {
 
   return (
     <>
-      {loader ? <LoaderOverlay /> : null}
+      {loader ? <LoaderOverlay/> : null}
       <div className="showCourses">
         <div className={`pop_up_overlay ${updateCourse ? "open" : ""}`}>
           <div className={`updateCoursePopUp`}>
