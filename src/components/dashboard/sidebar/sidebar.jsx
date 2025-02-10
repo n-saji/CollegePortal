@@ -8,6 +8,11 @@ export const SideBar = (props) => {
   const [showCourseDropdown, setShowCourseDropdown] = useState(false);
   const [showStudentDropdown, setShowStudentDropdown] = useState(false);
 
+  const closeAllDropdown = () => {
+    setShowCourseDropdown(false);
+    setShowStudentDropdown(false);
+  };
+
   return (
     <div
       className="dashboard_side_panel"
@@ -49,6 +54,7 @@ export const SideBar = (props) => {
               to={`${BASE_URL}/dashboard/courses`}
               onClick={() => {
                 props.show.setShowSidePanel(false);
+                closeAllDropdown();
               }}
               className="dashboard_side_panel_dropdown_link dropdown_underline"
             >
@@ -76,6 +82,7 @@ export const SideBar = (props) => {
               to={`${BASE_URL}/dashboard/students/add`}
               onClick={() => {
                 props.show.setShowSidePanel(false);
+                closeAllDropdown();
               }}
               className="dashboard_side_panel_dropdown_link dropdown_underline"
             >
@@ -85,6 +92,7 @@ export const SideBar = (props) => {
               to={`${BASE_URL}/dashboard/students`}
               onClick={() => {
                 props.show.setShowSidePanel(false);
+                closeAllDropdown();
               }}
               className="dashboard_side_panel_dropdown_link dropdown_underline"
             >
