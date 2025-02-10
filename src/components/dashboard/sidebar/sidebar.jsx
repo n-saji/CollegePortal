@@ -30,28 +30,31 @@ export const SideBar = () => {
           >
             Course
           </p>
-          {showCourseDropdown && (
-            <div className="dashboard_side_panel_course_dropdown ">
-              <Link
-                to={`${BASE_URL}/dashboard/courses/add`}
-                onClick={() => {
-                  setShowSidePanel(false);
-                }}
-                className="dashboard_side_panel_dropdown_link dropdown_underline"
-              >
-                Add
-              </Link>
-              <Link
-                to={`${BASE_URL}/dashboard/courses`}
-                onClick={() => {
-                  setShowSidePanel(false);
-                }}
-                className="dashboard_side_panel_dropdown_link dropdown_underline"
-              >
-                Display
-              </Link>
-            </div>
-          )}
+
+          <div
+            className={`dashboard_side_panel_course_dropdown ${
+              showCourseDropdown ? "active" : ""
+            }`}
+          >
+            <Link
+              to={`${BASE_URL}/dashboard/courses/add`}
+              onClick={() => {
+                setShowSidePanel(false);
+              }}
+              className="dashboard_side_panel_dropdown_link dropdown_underline"
+            >
+              Add
+            </Link>
+            <Link
+              to={`${BASE_URL}/dashboard/courses`}
+              onClick={() => {
+                setShowSidePanel(false);
+              }}
+              className="dashboard_side_panel_dropdown_link dropdown_underline"
+            >
+              Display
+            </Link>
+          </div>
         </div>
 
         <p className="p_affect">Students</p>

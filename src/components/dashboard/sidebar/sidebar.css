@@ -38,7 +38,19 @@
 }
 
 .dashboard_side_panel_course_dropdown {
-  transition: all 0.5s ease;
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(-5rem);
+  max-height: 0;
+  overflow: hidden;
+}
+
+.dashboard_side_panel_course_dropdown.active {
+  opacity: 1;
+  transform: translateY(0);
+  max-height: 500px;
+  border-bottom: 2px solid rgb(0, 217, 255);
+  border-top: 2px solid rgb(0, 217, 255);
 }
 
 .dashboard_side_panel_link {
@@ -72,7 +84,6 @@
 }
 
 .dashboard_side_panel_dropdown_link {
-  font-size: 0.9rem;
   text-align: center;
   transition: all 0.3s ease;
   text-decoration: none;
@@ -81,16 +92,16 @@
   justify-content: center;
 }
 .dropdown_underline {
-  font-size: 1.2rem;
+  font-size: 0.9rem;
   margin: 0.5rem 0;
 }
 .dropdown_underline:hover {
-  color: black;
+  text-decoration: underline;
 }
-.dashboard_panel_with_dropdown{
+.dashboard_panel_with_dropdown {
   width: 100%;
 }
-.p_affect{
+.p_affect {
   font-size: 1.5rem;
   color: white;
   margin: 1rem 0;
@@ -103,17 +114,16 @@
   text-align: center;
   transition: all 0.3s ease;
   text-decoration: none;
-
 }
-.p_affect:hover{
+.p_affect:hover {
   color: rgb(0, 217, 255);
   text-align: center;
 }
 
 .p_affect.active {
   font-size: 1.5rem;
-  border-bottom: 2px solid rgb(0, 217, 255);
   color: rgb(0, 217, 255);
+  /* border-bottom: 2px solid rgb(0, 217, 255); */
 }
 
 /* .underline {
