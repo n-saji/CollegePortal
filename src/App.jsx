@@ -129,6 +129,9 @@ const LandingPage = () => {
 
   return (
     <>
+      <div className="mobile_view">
+        <h1>Mobile View Not Supported</h1>
+      </div>
       <div className="landing_page">
         <div className="landing_page_window">
           <div className="landing_page_window_title">
