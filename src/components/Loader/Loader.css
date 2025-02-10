@@ -8,7 +8,13 @@
     position: fixed;
     z-index: 2;
   }
-  
+  .loader_text{
+    color: #f0f0f0;
+    font-size: 1.5rem;
+    position: absolute;
+    top: 60%;
+    z-index: 2;
+  }
   .loader {
     border: 5px solid #f3f3f3; /* Light grey */
     border-top: 8px solid #000000; /* Blue */
