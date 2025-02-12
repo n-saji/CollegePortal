@@ -4,7 +4,7 @@ import axios from "axios";
 import { getCookie } from "../../../../utils/cookies";
 import { BASE_URL, API_URL } from "../../../../config/config";
 import { LoaderOverlay } from "../../../Loader/Loader";
-import { parse } from "dotenv";
+import Delete from "../../../../assets/delete.png";
 
 export const ShowStudents = (props) => {
   const [loader, setLoader] = useState(false);
@@ -51,7 +51,6 @@ export const ShowStudents = (props) => {
         setLoader(false);
       });
   }, [refresh]);
-
 
   useEffect(() => {
     axios({
@@ -102,6 +101,31 @@ export const ShowStudents = (props) => {
       })
       .finally(() => {
         setLoader(false);
+      });
+  };
+
+  const deleteStudent = (id) => {
+    setLoader(true);
+    axios({
+      method: "DELETE",
+      url: API_URL + "/delete-student-info/" + id,
+      headers: {
+        Token: getCookie("token"),
+      },
+      data: {
+        Id: id,
+      },
+    })
+      .then((res) => {
+        setRefresh((prev) => !prev);
+      })
+      .catch((err) => {
+        console.log(err);
+        alert("Error deleting student");
+      })
+      .finally(() => {
+        setLoader(false);
+        setUpdateStudentPopup(false);
       });
   };
 
@@ -239,6 +263,14 @@ export const ShowStudents = (props) => {
           }`}
         >
           <div className="update-student-popup-content">
+            <img
+              alt="delete"
+              src={Delete}
+              className="delete_icon"
+              onClick={() => {
+                deleteStudent(updateStudentDetails.Id);
+              }}
+            />
             <div className="form-input">
               <label>Name</label>
               <input
