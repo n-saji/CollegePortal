@@ -6,7 +6,7 @@
     width: 100vw;
     background-color: rgba(0, 0, 0, 0.777);
     position: fixed;
-    z-index: 2;
+    z-index: 100;
   }
   .loader_text{
     color: #f0f0f0;
