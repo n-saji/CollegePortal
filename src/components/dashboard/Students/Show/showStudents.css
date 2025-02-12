@@ -185,6 +185,7 @@
   border: 1px solid white;
   color: white;
   overflow: scroll;
+  position: relative;
 }
 .form-input {
   display: flex;
@@ -248,4 +249,10 @@
 .form-input select:focus {
   outline: none;
   border-color: red;
+}
+.delete_icon {
+  cursor: pointer;
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
 }
