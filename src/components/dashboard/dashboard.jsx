@@ -77,7 +77,7 @@ export const Dashboard = () => {
             <p className="profile_name">{username}</p>
             {showProfileDropdown && (
               <div className="profile_dropdown">
-                <Link to="/profile" className="profile_dropdown_p">
+                <Link to={`${BASE_URL}/profile`} className="profile_dropdown_p">
                   Profile
                 </Link>
 
