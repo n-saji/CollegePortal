@@ -12,6 +12,7 @@ import { getCookie } from "../../utils/cookies.jsx";
 import Hamburger from "../../assets/hamburger.png";
 import { ShowStudents } from "./Students/Show/showStudents.jsx";
 import { AddStudent } from "./Students/Add/addStudent.jsx";
+import { AddInstructor } from "./Instructors/Add/Add.jsx";
 
 export const Dashboard = () => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
@@ -112,6 +113,11 @@ export const Dashboard = () => {
             path={`students/add`}
             element={<AddStudent setHeaderTitle={setHeaderTitle} />}
           />
+          <Route path={`instructors`} element={<></>} />
+          <Route
+            path={`instructors/add`}
+            element={<AddInstructor setHeaderTitle={setHeaderTitle} />}
+          ></Route>
         </Routes>
       </div>
     </>

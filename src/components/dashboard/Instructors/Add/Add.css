@@ -1,0 +1,167 @@
+.instructor {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: calc(100vh - 6rem);
+}
+.instructor-form {
+  width: 40%;
+  height: 60vh;
+  border: 2px solid black;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.instructor-form-input {
+  width: 80%;
+  height: 2rem;
+  margin: 1.5rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* text-align: left; */
+}
+.instructor-form-input-label {
+  font-size: 1.2rem;
+  margin: 0.4rem 0;
+  color: rgb(53, 53, 53);
+  font-weight: 500;
+}
+.instructor-form-input-field {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  margin: 0.4rem 0;
+  color: black;
+}
+.instructor-form-input-field:focus {
+  border-bottom: 2px solid rgb(0, 149, 255);
+}
+
+.instructor-form-input select {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  margin: 0.4rem 0;
+}
+.instructor-form-input select:focus {
+  border-bottom: 2px solid rgb(0, 149, 255);
+}
+.instructor-form-input-button {
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  margin: 2rem 0;
+}
+.instructor-form-input-button button {
+  width: 30%;
+  height: 2rem;
+  background-color: rgb(0, 149, 255);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.instructor-popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+.instructor-popup.active {
+  opacity: 1;
+  visibility: visible;
+}
+.instructor-popup-content {
+  width: 40%;
+  height: 50%;
+  background-color: white;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 3px solid black;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 1);
+  text-align: center;
+}
+.instructor-popup-close {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  width: 2rem;
+  height: 2rem;
+}
+.instructor-popup-content h1 {
+  font-size: 2rem;
+  margin: 1rem 0;
+}
+.instructor-popup-content p {
+  font-size: 1rem;
+  margin: 1rem 0;
+}
+.instructor-popup-button {
+  width: 30%;
+  height: 2rem;
+  background-color: rgb(0, 149, 255);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 1rem 0;
+}
+.instructor-popup-button:hover {
+  background-color: rgb(0, 100, 255);
+}
+
+.instructor-popup-content input {
+  width: 80%;
+  height: 2rem;
+  border: none;
+  border-bottom: 2px solid black;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  margin: 0.4rem 0;
+  color: black;
+}
+.instructor-popup-content input:focus {
+  border-bottom: 2px solid rgb(0, 149, 255);
+}
+.instructor-popup-content label {
+  font-size: 1.2rem;
+  margin: 0.4rem 0;
+  color: rgb(53, 53, 53);
+  font-weight: 500;
+}

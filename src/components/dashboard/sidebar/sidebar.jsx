@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 export const SideBar = (props) => {
   const [showCourseDropdown, setShowCourseDropdown] = useState(false);
   const [showStudentDropdown, setShowStudentDropdown] = useState(false);
+  const [showInstructorDropdown, setShowInstructorDropdown] = useState(false);
 
   const closeAllDropdown = () => {
     setShowCourseDropdown(false);
@@ -68,7 +69,7 @@ export const SideBar = (props) => {
             onClick={() => {
               setShowStudentDropdown(!showStudentDropdown);
             }}
-            className={`p_affect ${showCourseDropdown ? "active" : ""}`}
+            className={`p_affect ${showStudentDropdown ? "active" : ""}`}
           >
             Students
           </p>
@@ -100,7 +101,43 @@ export const SideBar = (props) => {
             </Link>
           </div>
         </div>
-        <p className="p_affect">Instructors</p>
+        <div className="dashboard_panel_with_dropdown">
+          <p
+            onClick={() => {
+              setShowInstructorDropdown(!showInstructorDropdown);
+            }}
+            className={`p_affect ${showInstructorDropdown ? "active" : ""}`}
+          >
+            Instructors
+          </p>
+
+          <div
+            className={`dashboard_side_panel_course_dropdown ${
+              showInstructorDropdown ? "active" : ""
+            }`}
+          >
+            <Link
+              to={`${BASE_URL}/dashboard/instructors/add`}
+              onClick={() => {
+                props.show.setShowSidePanel(false);
+                closeAllDropdown();
+              }}
+              className="dashboard_side_panel_dropdown_link dropdown_underline"
+            >
+              Add
+            </Link>
+            <Link
+              to={`${BASE_URL}/dashboard/instructors`}
+              onClick={() => {
+                props.show.setShowSidePanel(false);
+                closeAllDropdown();
+              }}
+              className="dashboard_side_panel_dropdown_link dropdown_underline"
+            >
+              Display
+            </Link>
+          </div>
+        </div>
       </div>
     </div>
   );
