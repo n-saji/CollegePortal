@@ -18,6 +18,7 @@ export const ShowInstructor = (props) => {
   const [openPopup, setOpenPopup] = useState(false);
   const [courses, setCourses] = useState([]);
   const [refresh, setRefresh] = useState(false);
+  const [showActions, setShowActions] = useState(false);
 
   useEffect(() => {
     props.setHeaderTitle("Instructor Details");
@@ -141,6 +142,71 @@ export const ShowInstructor = (props) => {
   return (
     <>
       {loading && <LoaderOverlay />}
+      <div className={`overlay-right ${showActions ? "active" : ""}`}>
+        <div className="overlay-right-content">
+          <div className="overlay-right-close">
+            <button
+              onClick={() => {
+                setShowActions(!showActions);
+              }}
+            >
+              X
+            </button>
+          </div>
+          <p>Sort By</p>
+          <button
+            className="bt-overlay-right-content"
+            onClick={() => {
+              setOrder("instructor_name");
+              setRefresh((prev) => !prev);
+              setShowActions(false);
+            }}
+          >
+            Name
+          </button>
+          <button
+            className="bt-overlay-right-content"
+            onClick={() => {
+              setOrder("department");
+              setRefresh((prev) => !prev);
+              setShowActions(false);
+            }}
+          >
+            Department
+          </button>
+          <button
+            className="bt-overlay-right-content"
+            onClick={() => {
+              setOrder("course_name");
+              setRefresh((prev) => !prev);
+              setShowActions(false);
+            }}
+          >
+            Course Name
+          </button>
+          <button
+            className="bt-overlay-right-content"
+            onClick={() => {
+              setOrder("students_enrolled");
+              setRefresh((prev) => !prev);
+              setShowActions(false);
+            }}
+          >
+            Students Enrolled
+          </button>
+
+          <button
+            className="bt-overlay-right-content"
+            onClick={() => {
+              setOrder("instructor_code");
+              setRefresh((prev) => !prev);
+              setShowActions(false);
+            }}
+          >
+            Code
+          </button>
+        </div>
+      </div>
       <div className="instructors-div">
         <div className="instructors-table">
           <table>
@@ -150,7 +216,17 @@ export const ShowInstructor = (props) => {
               <th>Course Name</th>
               <th>Students Enrolled</th>
               <th>Code</th>
-              <th>Action</th>
+              <th className="dev_action">
+                <div className="edit_table_text">Action</div>
+                <div className="edit_table_button">
+                  <img
+                    src="https://img.icons8.com/ios/50/ellipsis.png"
+                    onClick={() => {
+                      setShowActions(!showActions);
+                    }}
+                  />
+                </div>
+              </th>
             </thead>
             <tbody>
               {instructorsList.map((instructorD) => {
@@ -282,4 +358,3 @@ export const ShowInstructor = (props) => {
     </>
   );
 };
-

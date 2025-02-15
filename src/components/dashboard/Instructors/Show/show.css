@@ -160,3 +160,110 @@
 .popup-form button:hover {
   background-color: #0056b3;
 }
+
+.overlay_student_table_order {
+  position: absolute;
+  display: none;
+  background-color: #f9f9f9;
+  width: 100%;
+  height: 1rem;
+  z-index: 1;
+  top: 2rem;
+  left: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+.overlay_student_table_order.active {
+  display: flex;
+}
+.overlay-right {
+  position: fixed;
+  right: -18rem; /* Move the panel outside the viewport */
+  background-color: #000000de;
+  width: 18rem;
+  height: 100%;
+  top: 5rem;
+  z-index: 4;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  visibility: hidden;
+  transition: right 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+.overlay-right.active {
+  visibility: visible;
+  right: 0; /* Bring the panel into view */
+}
+
+.overlay-right-close {
+  position: absolute;
+  top: 0%;
+  right: 0%;
+  cursor: pointer;
+  height: 2.2rem;
+  width: 2.4rem;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.overlay-right-close button {
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  width: 100%;
+  cursor: pointer;
+}
+.overlay-right-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  font-size: 2rem;
+}
+.overlay-right-content-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  justify-content: center;
+  align-items: center;
+}
+.bt-overlay-right-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+  width: 100%;
+  margin: 1rem 0;
+  height: 2rem;
+  font-size: 1.2rem;
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+  outline: none;
+  border: none;
+  transition: all 0.3s ease-in-out;
+}
+.bt-overlay-right-content:hover {
+  text-decoration: underline;
+}
+.dev_action {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.3rem;
+}
+.edit_table_button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  position: relative;
+}
