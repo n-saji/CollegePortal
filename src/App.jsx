@@ -11,7 +11,7 @@ import { GetUserName } from "./utils/helper";
 import { Profile } from "./components/Profile/Profile.jsx";
 import { LoaderOverlay } from "./components/Loader/Loader.jsx";
 
-const checkTokenStatus = async (props) => {
+const checkTokenStatus = async (props)  => {
   try {
     if (!getCookie("token")) {
       return;
@@ -131,6 +131,12 @@ const LandingPage = () => {
     }
   }
 
+  addEventListener("keydown", (e) => {
+    if (e.key === "Enter" && email && password) {
+      handleLogin();
+    }
+  });
+
   return (
     <>
       {loading && <LoaderOverlay text={"Redirecting..."} />}
@@ -168,7 +174,13 @@ const LandingPage = () => {
               <label>Show Password</label>
             </div>
             <div className="form_submit">
-              <button onClick={handleLogin}>Login</button>
+              <button onClick={
+                () => {
+                  handleLogin();
+                }
+              }
+              
+              >Login</button>
               <Link to={`${BASE_URL}/signup`}>
                 <button>Sign Up</button>
               </Link>
