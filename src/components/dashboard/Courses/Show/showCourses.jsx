@@ -70,6 +70,7 @@ export const ShowCourses = (props) => {
   }, [refresh]);
 
   props.setHeaderTitle("Course Catalog");
+  document.title = "Course Catalog";
 
   const DeleteCourse = (course) => {
     setLoader(true);
