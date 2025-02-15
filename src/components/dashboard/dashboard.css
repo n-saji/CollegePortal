@@ -44,10 +44,11 @@
   padding: 0 0.5rem;
   z-index: 1;
 }
-.dashboard_header_logout:hover {
+/* .profile_icon:hover,
+.profile_name:hover {
   color: dimgrey;
   transition: all 0.3s ease;
-}
+} */
 .profile_icon {
   height: 2.5rem;
   width: 2.5rem;
@@ -71,7 +72,7 @@
   position: absolute;
   top: 5rem;
   right: 0;
-  background-color: rgba(0, 0, 0, 0.712);
+  background-color: rgba(0, 0, 0, 0.896);
   color: white;
   border-radius: 0.5rem;
   width: 100%;
@@ -88,7 +89,7 @@
   justify-content: center;
 }
 .profile_dropdown_p:hover {
-  background-color: rgba(0, 0, 0, 0.712);
+  background-color: rgba(65, 65, 65, 0.712);
   border-radius: 0.5rem;
 }
 .clock_div {

@@ -88,8 +88,8 @@ export const AddStudent = (props) => {
 
   return (
     <>
+      {loader ? <LoaderOverlay /> : null}
       <div className="add_student">
-        {loader ? <LoaderOverlay /> : null}
         <div className="add_student_form">
           <div className="add_student_form_input">
             <label>Name</label>

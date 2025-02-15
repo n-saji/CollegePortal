@@ -8,6 +8,7 @@ export const AddCourse = (props) => {
   const [courseName, setCourseName] = useState("");
   const [loader, setLoader] = useState(false);
   props.setHeaderTitle("Courses");
+  document.title = "Courses";
 
   const AddCourse = () => {
     setLoader(true);

@@ -45,7 +45,6 @@ export const ShowInstructor = (props) => {
   }, [refresh, order]);
 
   useEffect(() => {
-    setLoading(true);
     axios({
       method: "GET",
       url: API_URL + "/retrieve-all-courses",
@@ -61,9 +60,7 @@ export const ShowInstructor = (props) => {
         console.log(err);
         return;
       })
-      .finally(() => {
-        setLoading(false);
-      });
+      .finally(() => {});
   }, []);
 
   const updateInstructor = () => {
@@ -142,181 +139,147 @@ export const ShowInstructor = (props) => {
   };
 
   return (
-    <div className="instructors-div">
+    <>
       {loading && <LoaderOverlay />}
-      <div className="instructors-table">
-        <table>
-          <thead>
-            <th>Name</th>
-            <th>Department</th>
-            <th>Course Name</th>
-            <th>Students Enrolled</th>
-            <th>Code</th>
-            <th>Action</th>
-          </thead>
-          <tbody>
-            {instructorsList.map((instructorD) => {
-              let stundenrolled = 0;
-              if (
-                instructorD &&
-                instructorD.info &&
-                instructorD.info.students_list
-              ) {
-                stundenrolled = instructorD.info.students_list.length;
-              }
-              return (
-                <tr key={instructorD.id}>
-                  <td>{instructorD.instructor_name}</td>
-                  <td>{instructorD.department}</td>
-                  <td>{instructorD.course_name}</td>
-                  <td>{stundenrolled}</td>
-                  <td>{instructorD.instructor_code}</td>
-                  <td>
-                    <img
-                      src="https://img.icons8.com/ios/20/edit--v1.png"
-                      alt="Edit"
-                      onClick={() => {
-                        setOpenPopup(true);
-                        setInstructor(instructorD);
-                      }}
-                    />
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
+      <div className="instructors-div">
+        <div className="instructors-table">
+          <table>
+            <thead>
+              <th>Name</th>
+              <th>Department</th>
+              <th>Course Name</th>
+              <th>Students Enrolled</th>
+              <th>Code</th>
+              <th>Action</th>
+            </thead>
+            <tbody>
+              {instructorsList.map((instructorD) => {
+                let stundenrolled = 0;
+                if (
+                  instructorD &&
+                  instructorD.info &&
+                  instructorD.info.students_list
+                ) {
+                  stundenrolled = instructorD.info.students_list.length;
+                }
+                return (
+                  <tr key={instructorD.id}>
+                    <td>{instructorD.instructor_name}</td>
+                    <td>{instructorD.department}</td>
+                    <td>{instructorD.course_name}</td>
+                    <td>{stundenrolled}</td>
+                    <td>{instructorD.instructor_code}</td>
+                    <td>
+                      <img
+                        src="https://img.icons8.com/ios/20/edit--v1.png"
+                        alt="Edit"
+                        onClick={() => {
+                          setOpenPopup(true);
+                          setInstructor(instructorD);
+                        }}
+                      />
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
 
-      <div className={`popup${openPopup ? " active" : ""}`}>
-        <div className="popup-form">
-          <div className="popup-close" onClick={() => setOpenPopup(false)}>
-            <p>X</p>
-          </div>
-          <div className="popup-title">Edit Instructor</div>
-          <div className="popup-content">
-            <div className="form-group">
-              <label htmlFor="instructor_name">Instructor Name</label>
-              <input
-                type="text"
-                name="instructor_name"
-                id="instructor_name"
-                value={instructor.instructor_name}
-                onChange={(e) => {
-                  setInstructor({
-                    ...instructor,
-                    instructor_name: e.target.value,
-                  });
-                }}
-              />
+        <div className={`popup${openPopup ? " active" : ""}`}>
+          <div className="popup-form">
+            <div className="popup-close" onClick={() => setOpenPopup(false)}>
+              <p>X</p>
             </div>
-            <div className="form-group">
-              <label htmlFor="department">Department</label>
-              <input
-                type="text"
-                name="department"
-                id="department"
-                value={instructor.department}
-                onChange={(e) => {
-                  setInstructor({
-                    ...instructor,
-                    department: e.target.value,
-                  });
-                }}
-              />
-            </div>
-            <div className="form-group">
-              <label>Course</label>
+            <div className="popup-title">Edit Instructor</div>
+            <div className="popup-content">
+              <div className="form-group">
+                <label htmlFor="instructor_name">Instructor Name</label>
+                <input
+                  type="text"
+                  name="instructor_name"
+                  id="instructor_name"
+                  value={instructor.instructor_name}
+                  onChange={(e) => {
+                    setInstructor({
+                      ...instructor,
+                      instructor_name: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <div className="form-group">
+                <label htmlFor="department">Department</label>
+                <input
+                  type="text"
+                  name="department"
+                  id="department"
+                  value={instructor.department}
+                  onChange={(e) => {
+                    setInstructor({
+                      ...instructor,
+                      department: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <div className="form-group">
+                <label>Course</label>
 
-              <select
-                value={instructor.course_name}
-                onChange={(e) => {
-                  setInstructor({
-                    ...instructor,
-                    course_name: e.target.value,
-                  });
-                }}
-              >
-                <option value="">{instructor.course_name}</option>
-                {courses.map((course) => (
-                  <option value={course.course_id} key={course.course_id}>
-                    {course.course_name}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div className="form-group">
-              <label htmlFor="instructor_code">Instructor Code</label>
-              <input
-                type="text"
-                name="instructor_code"
-                id="instructor_code"
-                value={instructor.instructor_code}
-                onChange={(e) => {
-                  setInstructor({
-                    ...instructor,
-                    instructor_code: e.target.value,
-                  });
-                }}
-              />
-            </div>
-            <div className="form-group-bt">
-              <button
-                type="button"
-                onClick={() => {
-                  updateInstructor();
-                }}
-              >
-                Update
-              </button>
-              <button
-                onClick={() => {
-                  deleteInstructor();
-                }}
-              >
-                Delete
-              </button>
+                <select
+                  value={instructor.course_name}
+                  onChange={(e) => {
+                    setInstructor({
+                      ...instructor,
+                      course_name: e.target.value,
+                    });
+                  }}
+                >
+                  <option value="">{instructor.course_name}</option>
+                  {courses.map((course) => (
+                    <option value={course.course_id} key={course.course_id}>
+                      {course.course_name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="form-group">
+                <label htmlFor="instructor_code">Instructor Code</label>
+                <input
+                  type="text"
+                  name="instructor_code"
+                  id="instructor_code"
+                  value={instructor.instructor_code}
+                  onChange={(e) => {
+                    setInstructor({
+                      ...instructor,
+                      instructor_code: e.target.value,
+                    });
+                  }}
+                />
+              </div>
+              <div className="form-group-bt">
+                <button
+                  type="button"
+                  onClick={() => {
+                    updateInstructor();
+                  }}
+                >
+                  Update
+                </button>
+                <button
+                  onClick={() => {
+                    deleteInstructor();
+                  }}
+                >
+                  Delete
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
-// {
-//     "id": "41a83c9d-48a0-403e-abe4-598109cb0dd6",
-//     "instructor_code": "-",
-//     "instructor_name": "Admin",
-//     "department": "Empty Department",
-//     "course_id": "75bdc6dd-93cc-4b00-9334-b5f991c0f25a",
-//     "course_name": "Algebra",
-//     "ClassesEnrolled": {
-//         "Id": "75bdc6dd-93cc-4b00-9334-b5f991c0f25a",
-//         "course_name": "Algebra"
-//     },
-//     "info": {
-//         "students_list": [
-//             {
-//                 "Id": "d23f664b-5b0b-47dc-b0f6-bc8d7cff8be7",
-//                 "Name": "Test Student",
-//                 "RollNumber": "23",
-//                 "Age": 0,
-//                 "CourseId": "75bdc6dd-93cc-4b00-9334-b5f991c0f25a",
-//                 "MarksId": "e3f033f5-b618-46db-8399-f3e09d81b581",
-//                 "ClassesEnrolled": {
-//                     "Id": "75bdc6dd-93cc-4b00-9334-b5f991c0f25a",
-//                     "course_name": "Algebra"
-//                 },
-//                 "StudentMarks": {
-//                     "Id": "e3f033f5-b618-46db-8399-f3e09d81b581",
-//                     "StudentId": "d23f664b-5b0b-47dc-b0f6-bc8d7cff8be7",
-//                     "CourseId": "75bdc6dd-93cc-4b00-9334-b5f991c0f25a",
-//                     "CourseName": "Algebra",
-//                     "Marks": 0,
-//                     "Grade": "nil"
-//                 }
-//             }
-//         ]
-//     }
-// }

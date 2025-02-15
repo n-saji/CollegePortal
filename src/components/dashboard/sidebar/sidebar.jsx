@@ -12,6 +12,7 @@ export const SideBar = (props) => {
   const closeAllDropdown = () => {
     setShowCourseDropdown(false);
     setShowStudentDropdown(false);
+    setShowInstructorDropdown(false);
   };
 
   return (
@@ -22,7 +23,12 @@ export const SideBar = (props) => {
       <div className="dashboard_side_panel_content">
         <Link
           to={`${BASE_URL}/dashboard`}
-          onClick={() => props.show.setShowSidePanel(false)}
+          onClick={() => {
+            props.show.setShowSidePanel(false);
+            setShowCourseDropdown(false);
+            setShowStudentDropdown(false);
+            setShowInstructorDropdown(false);
+          }}
           className="p_affect"
         >
           Home
@@ -31,6 +37,8 @@ export const SideBar = (props) => {
           <p
             onClick={() => {
               setShowCourseDropdown(!showCourseDropdown);
+              setShowStudentDropdown(false);
+              setShowInstructorDropdown(false);
             }}
             className={`p_affect ${showCourseDropdown ? "active" : ""}`}
           >
@@ -46,6 +54,7 @@ export const SideBar = (props) => {
               to={`${BASE_URL}/dashboard/courses/add`}
               onClick={() => {
                 props.show.setShowSidePanel(false);
+                closeAllDropdown();
               }}
               className="dashboard_side_panel_dropdown_link dropdown_underline"
             >
@@ -68,6 +77,8 @@ export const SideBar = (props) => {
           <p
             onClick={() => {
               setShowStudentDropdown(!showStudentDropdown);
+              setShowCourseDropdown(false);
+              setShowInstructorDropdown(false);
             }}
             className={`p_affect ${showStudentDropdown ? "active" : ""}`}
           >
@@ -105,6 +116,8 @@ export const SideBar = (props) => {
           <p
             onClick={() => {
               setShowInstructorDropdown(!showInstructorDropdown);
+              setShowCourseDropdown(false);
+              setShowStudentDropdown(false);
             }}
             className={`p_affect ${showInstructorDropdown ? "active" : ""}`}
           >
