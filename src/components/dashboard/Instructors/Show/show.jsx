@@ -73,6 +73,7 @@ export const ShowInstructor = (props) => {
       instructor.instructor_code === ""
     ) {
       alert("Please fill all the fields");
+      setLoading(false);
       return;
     }
     if (!instructor.id) {
@@ -96,6 +97,7 @@ export const ShowInstructor = (props) => {
       .catch((err) => {
         alert("Error updating instructor");
         console.log(err);
+        setLoading(false);
         return;
       })
       .finally(() => {
