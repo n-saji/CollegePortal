@@ -1,6 +1,6 @@
 import axios from "axios";
 import "./dashboard.css";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { API_URL, BASE_URL } from "../../config/config.jsx";
 
 import { SideBar } from "./sidebar/sidebar.jsx";
@@ -14,6 +14,8 @@ import { ShowStudents } from "./Students/Show/showStudents.jsx";
 import { AddStudent } from "./Students/Add/addStudent.jsx";
 import { AddInstructor } from "./Instructors/Add/Add.jsx";
 import { ShowInstructor } from "./Instructors/Show/show.jsx";
+import { WebSocketComponent } from "../../utils/websockets/websockets.jsx";
+import { use } from "react";
 
 export const Dashboard = () => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
@@ -21,6 +23,24 @@ export const Dashboard = () => {
   const [loading, setLoading] = useState(true);
   const [header_title, setHeaderTitle] = useState("Dashboard");
   const [showSidePanel, setShowSidePanel] = useState(false);
+  const profileRef = useRef(null);
+
+  const handleCloseProfileDropdown = (event) => {
+    if (profileRef.current && !profileRef.current.contains(event.target)) {
+      setShowProfileDropdown(false);
+    }
+  };
+
+  useEffect(() => {
+    if (showProfileDropdown) {
+      document.addEventListener("click", handleCloseProfileDropdown);
+    } else {
+      document.removeEventListener("click", handleCloseProfileDropdown);
+    }
+    return () => {
+      document.removeEventListener("click", handleCloseProfileDropdown);
+    };
+  }, [showProfileDropdown]);
 
   useEffect(() => {
     document.title = "Dashboard";
@@ -69,30 +89,39 @@ export const Dashboard = () => {
           <div className="dashboard_header_title">
             <h1 className="dashboard_header_wording">{header_title}</h1>
           </div>
-          <div
-            className="dashboard_header_logout"
-            onClick={() => {
-              setShowProfileDropdown(!showProfileDropdown);
-            }}
-          >
-            <p className="profile_icon">{username.charAt(0)}</p>
-            <p className="profile_name">{username}</p>
-            {showProfileDropdown && (
-              <div className="profile_dropdown">
-                <Link to={`${BASE_URL}/profile`} className="profile_dropdown_p">
-                  Profile
-                </Link>
+          <div className="action_buttons">
+            <WebSocketComponent
+              setShowProfileDropdown={setShowProfileDropdown}
+            />
+            <div
+              className="dashboard_header_logout"
+              onClick={() => {
+                setShowProfileDropdown(!showProfileDropdown);
+              }}
+              ref={profileRef}
+            >
+              <p className="profile_icon">{username.charAt(0)}</p>
+              <p className="profile_name">{username}</p>
+              {showProfileDropdown && (
+                <div className="profile_dropdown">
+                  <Link
+                    to={`${BASE_URL}/profile`}
+                    className="profile_dropdown_p"
+                  >
+                    Profile
+                  </Link>
 
-                <p
-                  className="profile_dropdown_p"
-                  onClick={() => {
-                    logOut();
-                  }}
-                >
-                  Logout
-                </p>
-              </div>
-            )}
+                  <p
+                    className="profile_dropdown_p"
+                    onClick={() => {
+                      logOut();
+                    }}
+                  >
+                    Logout
+                  </p>
+                </div>
+              )}
+            </div>
           </div>
         </div>
 
