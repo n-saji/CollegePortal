@@ -90,9 +90,9 @@ export const Dashboard = () => {
             <h1 className="dashboard_header_wording">{header_title}</h1>
           </div>
           <div className="action_buttons">
-            <WebSocketComponent
+            {/* <WebSocketComponent
               setShowProfileDropdown={setShowProfileDropdown}
-            />
+            /> */}
             <div
               className="dashboard_header_logout"
               onClick={() => {
