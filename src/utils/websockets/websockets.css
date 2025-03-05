@@ -1,0 +1,55 @@
+.notification {
+  font-size: 1rem;
+  width: 4rem;
+  height: 5rem;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+  position: relative;
+}
+.bell {
+  height: 3rem;
+  width: 3rem;
+  cursor: pointer;
+  /* position: relative; */
+}
+.bell img {
+  height: 3rem;
+  width: 3rem;
+  cursor: pointer;
+  display: flex;
+}
+.bell::after {
+  content: attr(data-count);;
+  position: absolute;
+  top: 0.8rem;
+  right: 0.5rem;
+  width: 1rem;
+  height: 1rem;
+  background-color: transparent;
+  display: flex;
+}
+.messages {
+  display: flex;
+  flex-direction: column;
+  /* height: 100%; */
+  position: absolute;
+  width: 15rem;
+  background-color: rgba(0, 0, 0, 0.896);
+  top: 5rem;
+  color: white;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  padding: 0.4rem 0;
+}
+
+.messages li {
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #919090;
+}
+
+.messages li:nth-last-child(1) {
+  border-bottom: none;
+}
