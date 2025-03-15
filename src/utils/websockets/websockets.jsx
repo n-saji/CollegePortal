@@ -73,7 +73,7 @@ export const WebSocketComponent = (props) => {
   };
 
   const attemptReconnect = () => {
-    if (retries < 5) {
+    if (retries < 5 && !isConnected) {
       console.log(retries);
       const backoffTime = 50000;
       setRetries((prevRetries) => prevRetries + 1);
