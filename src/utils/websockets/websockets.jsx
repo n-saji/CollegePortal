@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./websockets.css";
-import { SOCKET_URL } from "../../config/config";
+import { SOCKET_URL, API_URL } from "../../config/config";
+import { getCookie } from "../cookies";
+import axios from "axios";
 
 export const WebSocketComponent = (props) => {
   const [socket, setSocket] = useState(null);
@@ -39,7 +41,7 @@ export const WebSocketComponent = (props) => {
   }, [bell, newMessage]);
 
   const connectWebSocket = () => {
-    const socket = new WebSocket(SOCKET_URL);
+    const socket = new WebSocket(SOCKET_URL + "/" + getCookie("account_id"));
 
     if (isConnected) {
       return;
@@ -100,6 +102,24 @@ export const WebSocketComponent = (props) => {
     };
   }, [isConnected]);
 
+  const sendReadMSG = () => {
+    if (!bell) {
+      return;
+    }
+    axios
+      .get(API_URL + "/read-message/" + getCookie("account_id"), {
+        headers: {
+          Token: getCookie("token"),
+        },
+      })
+      .then(() => {
+        console.log("Read message sent");
+      })
+      .catch((err) => {
+        console.error(err);
+      });
+  };
+
   return (
     <div className="notification">
       <div
@@ -112,6 +132,7 @@ export const WebSocketComponent = (props) => {
           alt="bell"
           onClick={() => {
             setBell(!bell);
+            sendReadMSG();
           }}
         />
       </div>
