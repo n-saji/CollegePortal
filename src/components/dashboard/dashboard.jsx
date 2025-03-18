@@ -47,6 +47,10 @@ export const Dashboard = () => {
     setUsername(localStorage.getItem("username"));
   }, [localStorage.getItem("username")]);
 
+  if (username === null) {
+    window.location.href = `${BASE_URL}/`;
+  }
+
   const logOut = () => {
     axios
       .get(API_URL + `/logout?token=${getCookie("token")}`)
