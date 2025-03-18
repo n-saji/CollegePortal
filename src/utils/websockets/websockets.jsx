@@ -4,6 +4,18 @@ import { SOCKET_URL, API_URL } from "../../config/config";
 import { getCookie } from "../cookies";
 import axios from "axios";
 
+function formatUnixTimestamp(unixTimestamp) {
+  const date = new Date(unixTimestamp * 1000); // Convert to milliseconds
+  const options = {
+    weekday: "short",
+    hour: "numeric",
+    minute: "2-digit",
+    hour12: true,
+  };
+
+  return new Intl.DateTimeFormat("en-US", options).format(date);
+}
+
 export const WebSocketComponent = (props) => {
   const [socket, setSocket] = useState(null);
   const [messages, setMessages] = useState([]);
@@ -54,7 +66,10 @@ export const WebSocketComponent = (props) => {
     };
 
     socket.onmessage = (event) => {
-      setMessages((prevMessages) => [...prevMessages, event.data]);
+      let jsonmsg = JSON.parse(event.data);
+      console.log(jsonmsg);
+
+      setMessages((prevMessages) => [...prevMessages, jsonmsg]);
       setNewMessage(true);
     };
 
@@ -120,6 +135,16 @@ export const WebSocketComponent = (props) => {
       });
   };
 
+  const handleLogout = () => {
+    if (socket) {
+      socket.close(1000, "User logged out");
+      setSocket(null);
+      setIsConnected(false);
+      setMessages([]);
+    }
+    onLogout(); // Notify parent component about logout
+  };
+
   return (
     <div className="notification">
       <div
@@ -140,7 +165,18 @@ export const WebSocketComponent = (props) => {
         <div className="messages">
           <ul>
             {messages.length ? (
-              messages.map((msg, index) => <li key={index}>{msg}</li>)
+              messages.map((msg, index) => (
+                <div>
+                  <li key={index}>
+                    <h3 className="msg-title">{msg.Title}</h3>
+                    <p className="msg-messages">{msg.Messages}</p>
+                    <p className="msg-author">Added By: {msg.Author}</p>
+                    <p className="msg-created-at">
+                      At: {formatUnixTimestamp(msg.CreatedAt)}
+                    </p>
+                  </li>
+                </div>
+              ))
             ) : (
               <li>No new messages</li>
             )}
@@ -152,3 +188,11 @@ export const WebSocketComponent = (props) => {
 };
 
 export default WebSocketComponent;
+
+// AccountID      // :      // "782126da-db7b-4269-8dca-46afeaa73795"
+// Author       // :       // "Nikhil Admin"
+// CreatedAt       // :       // 1742318232
+// ID       // :       // "d88171eb-3e0a-45cc-9cfc-d8a8c9877090"
+// IsRead       // :       // false
+// Messages       // :       // "Testing 10.31"
+// Title       // :       // "New Course"

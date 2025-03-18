@@ -15,7 +15,6 @@ import { AddStudent } from "./Students/Add/addStudent.jsx";
 import { AddInstructor } from "./Instructors/Add/Add.jsx";
 import { ShowInstructor } from "./Instructors/Show/show.jsx";
 import { WebSocketComponent } from "../../utils/websockets/websockets.jsx";
-import { use } from "react";
 
 export const Dashboard = () => {
   const [showProfileDropdown, setShowProfileDropdown] = useState(false);
@@ -62,7 +61,9 @@ export const Dashboard = () => {
       .catch((err) => {
         console.log(err);
       })
-      .finally(setLoading(false));
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   const Clock = () => {

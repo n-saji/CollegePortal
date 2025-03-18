@@ -46,10 +46,33 @@
 }
 
 .messages li {
-  padding: 0.3rem 0;
+  padding: 0.3rem 1rem;
   border-bottom: 1px solid #919090;
+  text-align: left;
 }
 
 .messages li:nth-last-child(1) {
   border-bottom: none;
+}
+.msg-title{
+  font-size: 1rem;
+  text-align: left;
+  padding: 0;
+}
+.msg-messages{
+  font-size: 0.8rem;
+  font-weight: 400;
+  text-align: left;
+  padding: 0;
+}
+.msg-author{
+  font-size: 0.6rem;
+  text-align: right;
+  padding: 0;
+}
+.msg-created-at{
+  font-size: 0.6rem;
+  text-align: right;
+  padding: 0;
+  text-decoration: underline dotted;
 }
