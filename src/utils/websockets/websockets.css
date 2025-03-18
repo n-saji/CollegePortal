@@ -43,17 +43,23 @@
   border-radius: 0.5rem;
   font-size: 0.9rem;
   padding: 0.4rem 0;
+  max-height: 50vh;
+  overflow-y: auto;
+  z-index: 1;
 }
 
 .messages li {
   padding: 0.3rem 1rem;
-  border-bottom: 1px solid #919090;
   text-align: left;
 }
+.msg-container{
+  border-bottom: 1px solid #919090;
+}
 
-.messages li:nth-last-child(1) {
+.msg-container:nth-last-child(1) {
   border-bottom: none;
 }
+
 .msg-title{
   font-size: 1rem;
   text-align: left;

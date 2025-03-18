@@ -18,7 +18,7 @@ function formatUnixTimestamp(unixTimestamp) {
 
 export const WebSocketComponent = (props) => {
   const [socket, setSocket] = useState(null);
-  const [messages, setMessages] = useState([]);
+  const [messages, setMessages] = useState(new Map());
   const [isConnected, setIsConnected] = useState(false);
   const [retries, setRetries] = useState(0);
   const [bell, setBell] = useState(false);
@@ -48,7 +48,7 @@ export const WebSocketComponent = (props) => {
 
   useEffect(() => {
     if (newMessage === false && bell === false) {
-      setMessages([]);
+      setMessages(new Map());
     }
   }, [bell, newMessage]);
 
@@ -67,10 +67,19 @@ export const WebSocketComponent = (props) => {
     };
 
     socket.onmessage = (event) => {
-      let jsonmsg = JSON.parse(event.data);
-
-      setMessages((prevMessages) => [...prevMessages, jsonmsg]);
-      setNewMessage(true);
+      const jsonmsg = JSON.parse(event.data);
+      const msgId = jsonmsg.ID;
+      setMessages((prevMessages) => {
+        console.log(prevMessages);
+        if (prevMessages.has(msgId)) {
+          console.log("Duplicate message ignored:", msgId);
+          return prevMessages;
+        }
+        setNewMessage(true);
+        const newMessages = new Map(prevMessages);
+        newMessages.set(msgId, jsonmsg);
+        return newMessages
+      });
     };
 
     socket.onerror = (error) => {
@@ -135,21 +144,12 @@ export const WebSocketComponent = (props) => {
       });
   };
 
-  const handleLogout = () => {
-    if (socket) {
-      socket.close(1000, "User logged out");
-      setSocket(null);
-      setIsConnected(false);
-      setMessages([]);
-    }
-    onLogout(); // Notify parent component about logout
-  };
 
   return (
     <div className="notification">
       <div
         className="bell"
-        data-count={newMessage ? messages.length : ""}
+        data-count={newMessage ? messages.size : ""}
         ref={bellRef}
       >
         <img
@@ -164,10 +164,10 @@ export const WebSocketComponent = (props) => {
       {bell && (
         <div className="messages">
           <ul>
-            {messages.length ? (
-              messages.map((msg, index) => (
-                <div>
-                  <li key={index}>
+            {messages.size > 0 ? (
+              [...messages.values()].map((msg) => (
+                <div className="msg-container">
+                  <li key={msg.ID}>
                     <h3 className="msg-title">{msg.Title}</h3>
                     <p className="msg-messages">{msg.Messages}</p>
                     <p className="msg-author">Added By: {msg.Author}</p>
