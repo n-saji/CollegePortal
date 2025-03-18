@@ -171,23 +171,23 @@ const LandingPage = () => {
                   setPassword(e.target.value);
                 }}
               />
+              <div className="form_checkbox_password">
+                <input type="checkbox" onClick={handleShowPassword} />
+                <label>Show Password</label>
+              </div>
             </div>
-            <div className="form_checkbox_password">
-              <input type="checkbox" onClick={handleShowPassword} />
-              <label>Show Password</label>
-            </div>
-            <div className="form_submit">
-              <button
-                onClick={() => {
-                  handleLogin();
-                }}
-              >
-                Login
-              </button>
-              <Link to={`${BASE_URL}/signup`}>
-                <button>Sign Up</button>
-              </Link>
-            </div>
+          </div>
+          <div className="form_submit">
+            <button
+              onClick={() => {
+                handleLogin();
+              }}
+            >
+              Login
+            </button>
+            <Link to={`${BASE_URL}/signup`}>
+              <button>Sign Up</button>
+            </Link>
           </div>
         </div>
       </div>
