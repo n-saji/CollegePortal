@@ -263,14 +263,23 @@ export const ShowStudents = (props) => {
           }`}
         >
           <div className="update-student-popup-content">
-            <img
+            {/* <img
               alt="delete"
               src={Delete}
               className="delete_icon"
               onClick={() => {
-                deleteStudent(updateStudentDetails.Id);
+                setUpdateStudentPopup(false);
               }}
-            />
+              
+            /> */}
+            <button
+              className="close_icon"
+              onClick={() => {
+                setUpdateStudentPopup(false);
+              }}
+            >
+              X
+            </button>
             <div className="form-input">
               <label>Name</label>
               <input
@@ -355,11 +364,12 @@ export const ShowStudents = (props) => {
                 Update
               </button>
               <button
+                className="delete"
                 onClick={() => {
-                  setUpdateStudentPopup(false);
+                  deleteStudent(updateStudentDetails.Id);
                 }}
               >
-                Cancel
+                Delete
               </button>
             </div>
           </div>

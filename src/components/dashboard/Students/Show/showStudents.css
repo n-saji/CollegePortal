@@ -237,6 +237,11 @@
   background-color: white;
   color: black;
 }
+.form-buttons .delete:hover {
+  background-color: red;
+  color: black;
+  border-color: red;
+}
 .form-input select {
   width: 80%;
   font-size: 0.9rem;
@@ -251,9 +256,14 @@
   outline: none;
   border-color: red;
 }
-.delete_icon {
+.close_icon {
   cursor: pointer;
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 5px;
+  right: 8px;
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 1.5rem;
+  font-weight:300;
 }
