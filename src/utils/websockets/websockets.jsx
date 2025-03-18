@@ -56,6 +56,7 @@ export const WebSocketComponent = (props) => {
     const socket = new WebSocket(SOCKET_URL + "/" + getCookie("account_id"));
 
     if (isConnected) {
+      console.log("WebSocket already connected");
       return;
     }
 
@@ -67,7 +68,6 @@ export const WebSocketComponent = (props) => {
 
     socket.onmessage = (event) => {
       let jsonmsg = JSON.parse(event.data);
-      console.log(jsonmsg);
 
       setMessages((prevMessages) => [...prevMessages, jsonmsg]);
       setNewMessage(true);
