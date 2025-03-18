@@ -11,7 +11,7 @@ import { GetUserName } from "./utils/helper";
 import { Profile } from "./components/Profile/Profile.jsx";
 import { LoaderOverlay } from "./components/Loader/Loader.jsx";
 
-const checkTokenStatus = async (props)  => {
+const checkTokenStatus = async (props) => {
   try {
     if (!getCookie("token")) {
       return;
@@ -60,7 +60,10 @@ const LandingPage = () => {
     }
 
     try {
-      await GetUserName(c_account_id, c_Token);
+      setLoading(true);
+      await GetUserName(c_account_id, c_Token).then(() => {
+        setLoading(false);
+      });
       setFetchedAllData(true);
     } catch (err) {
       console.error(err);
@@ -100,11 +103,11 @@ const LandingPage = () => {
         })
         .catch((err) => {
           console.log(err);
+          setLoading(false);
           if (err.status !== 200) {
             alert(err.response.data);
             return;
           }
-          setLoading(false);
           alert("Something went wrong");
         });
     }
@@ -174,13 +177,13 @@ const LandingPage = () => {
               <label>Show Password</label>
             </div>
             <div className="form_submit">
-              <button onClick={
-                () => {
+              <button
+                onClick={() => {
                   handleLogin();
-                }
-              }
-              
-              >Login</button>
+                }}
+              >
+                Login
+              </button>
               <Link to={`${BASE_URL}/signup`}>
                 <button>Sign Up</button>
               </Link>
