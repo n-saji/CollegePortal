@@ -4,6 +4,7 @@
   align-items: center;
   margin: auto;
   height: 100vh;
+  background-color: #222222;
 }
 
 .landing_page_window {
@@ -12,7 +13,7 @@
   border-color: white;
   border-width: 1px;
   padding: 2rem;
-  box-shadow: 5px 5px 10px 5px rgb(31, 31, 31);
+  box-shadow: 5px 5px 15px 4px rgb(11, 11, 11, 0.8);
   width: 40%;
   /* height: 50%; */
   box-sizing: border-box;
@@ -31,18 +32,24 @@
 .landing_page_window_form {
   display: flex;
   flex-direction: column;
-  padding: 3rem;
+  height: 150px;
+  padding: 2rem;
   justify-content: space-around;
-  gap: 0.6rem;
 }
 
-.form_email,
-.form_password {
-  display: flex;
-  height: 2rem;
+.form_email {
+  /* display: flex; */
+  /* height: 2.5rem; */
   justify-content: center;
-  /* width: 100%; */
-  /* align-items: center; */
+  width: 100%;
+}
+.form_password {
+  /* height: 3rem; */
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  width: 100%;
+  gap: 0.3rem 0;
 }
 
 .form_email input,
@@ -50,7 +57,22 @@
   width: 100%;
   border-radius: 5px;
   border: 1px solid black;
-  padding: 0.5rem;
+  padding: 0.4rem 0;
+  height: 0.9rem;
+  font-size: 1rem;
+  outline: none;
+  background-color: #9c9c9c;
+  transition: all 0.3s ease;
+  text-indent: 0.4rem;
+}
+.form_email ::placeholder,
+.form_password ::placeholder {
+  color: #00000095;
+}
+
+.form_email input:focus,
+.form_password input:focus {
+  border: 1px solid #937c7c;
 }
 
 .form_checkbox_password {
@@ -58,6 +80,7 @@
   display: flex;
   justify-content: start;
   gap: 0.2rem;
+  padding: 0.1rem 0.1rem;
 }
 
 .form_submit {
@@ -70,19 +93,30 @@
   padding: 0.5rem;
   border-radius: 5px;
   border: 1px solid black;
-  background-color: #f0f0f0;
+  background-color: #dc5f00;
   cursor: pointer;
   transition: all 0.3s ease;
+  font-size: 1rem;
 }
 
 .form_submit button:hover {
-  background-color: #000000;
+  background-color: #262323;
   color: #f0f0f0;
   transition: all 0.3s ease;
+  color: #dc5f00;
 }
 .mobile_view {
   display: none;
 }
+
+.form_checkbox_password input {
+  cursor: pointer;
+  width: unset;
+}
+.form_checkbox_password label {
+  color: #898989;
+}
+
 
 @media screen and (max-width: 1001px) {
   .mobile_view {
