@@ -7,7 +7,7 @@ export default defineConfig({
   preview: {
     port: 8080,  // Optional: Match your deployment port
     host: true,  // Expose to the network
-    allowedHosts: ['collegeportal-qcs5o.ondigitalocean.app']
+    allowedHosts: ['collegeportal-qcs5o.ondigitalocean.app', 'localhost','nikhilsaji.me'],
   },
   base: 'https://collegeportal-qcs5o.ondigitalocean.app/',
 })
