@@ -3,13 +3,29 @@ import { useState, useEffect } from "react";
 import { Dashboard } from "./components/dashboard/dashboard.jsx";
 import { Signup } from "./components/SignUp/signup.jsx";
 
-import { Route, Routes, Link, Navigate } from "react-router-dom";
+import { Route, Routes, Link, Navigate, useNavigate } from "react-router-dom";
 import { BASE_URL, API_URL } from "./config/config.jsx";
 import axios from "axios";
 import { getCookie, validateCookie } from "./utils/cookies";
 import { GetUserName } from "./utils/helper";
 import { Profile } from "./components/Profile/Profile.jsx";
 import { LoaderOverlay } from "./components/Loader/Loader.jsx";
+
+const SendOTP = async (email) => {
+  try {
+    const res = await axios({
+      method: "GET",
+      url: API_URL + "/send-otp-email?email_id=" + email,
+    });
+    if (res.status === 200) {
+      return true;
+    }
+    return false;
+  } catch (err) {
+    console.error(err);
+    return false;
+  }
+};
 
 const checkTokenStatus = async (props) => {
   try {
@@ -45,6 +61,7 @@ const LandingPage = () => {
   const [loginStatus, setLoginStatus] = useState(false);
   const [fetechedAllData, setFetchedAllData] = useState(false);
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.title = "University Portal";
@@ -105,6 +122,18 @@ const LandingPage = () => {
           console.log(err);
           setLoading(false);
           if (err.status !== 200) {
+            if (err.status === 406) {
+              document.cookie = `email_id=${email}`;
+              alert("Account Not Verified");
+              SendOTP(email).then(() => {
+                alert("OTP sent to your email");
+              });
+
+              alert("Please verify your email");
+
+              navigate(`${BASE_URL}/verify`);
+              return;
+            }
             alert(err.response.data);
             return;
           }
@@ -201,8 +230,15 @@ function App() {
       <Routes>
         <Route path={`${BASE_URL}`} element={<LandingPage />} />
         <Route path={`${BASE_URL}/dashboard/*`} element={<Dashboard />} />
-        <Route path={`${BASE_URL}/signup`} element={<Signup />} />
+        <Route
+          path={`${BASE_URL}/signup`}
+          element={<Signup redirect={false} />}
+        />
         <Route path={`${BASE_URL}/profile`} element={<Profile />} />
+        <Route
+          path={`${BASE_URL}/verify`}
+          element={<Signup redirect={true} />}
+        />
       </Routes>
     </>
   );
