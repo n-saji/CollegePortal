@@ -1,8 +1,16 @@
-# React + Vite
+# University Portal
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+University Portal is a web application built using **React** and **Vite** that allows professors to manage student and course information in a secure environment. This project includes features such as professor login, student and course management, full record updates, and OTP-based authentication for enhanced security.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Professor Login**: Secure login system for professors.
+- **Add Student**: Easily add and manage student profiles.
+- **Add Courses**: Create and update course offerings.
+- **Update All**: Comprehensive update functionality for managing records.
+- **OTP Authentication**: Secure one-time password verification to ensure safe access.
+
+## Built With
+
+- [React](https://reactjs.org/) – A JavaScript library for building user interfaces.
+- [Vite](https://vitejs.dev/) – A fast build tool for modern web projects.
