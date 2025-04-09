@@ -9,8 +9,3 @@ University Portal is a web application built using **React** and **Vite** that a
 - **Add Courses**: Create and update course offerings.
 - **Update All**: Comprehensive update functionality for managing records.
 - **OTP Authentication**: Secure one-time password verification to ensure safe access.
-
-## Built With
-
-- [React](https://reactjs.org/) – A JavaScript library for building user interfaces.
-- [Vite](https://vitejs.dev/) – A fast build tool for modern web projects.
