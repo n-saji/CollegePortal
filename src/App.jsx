@@ -222,6 +222,29 @@ const LandingPage = () => {
   );
 };
 
+const LogOut = () => {
+  const [redirect, setRedirect] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(`${API_URL}/logout?token=${getCookie("token")}`)
+      .then(() => {
+        console.log("Logged out");
+        localStorage.clear();
+        setRedirect(true);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  if (redirect) {
+    window.location.href = `${BASE_URL}/`;
+  }
+
+  return <LoaderOverlay />;
+};
+
 function App() {
   return (
     <>
@@ -237,6 +260,7 @@ function App() {
           path={`${BASE_URL}/verify`}
           element={<Signup redirect={true} />}
         />
+        <Route path={`${BASE_URL}/logout`} element={<LogOut />} />
       </Routes>
     </>
   );
