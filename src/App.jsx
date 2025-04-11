@@ -126,10 +126,8 @@ const LandingPage = () => {
               document.cookie = `email_id=${email}`;
               alert("Account Not Verified");
               SendOTP(email).then(() => {
-                alert("OTP sent to your email");
+                alert("OTP sent to your email. Please verify your email");
               });
-
-              alert("Please verify your email");
 
               navigate(`${BASE_URL}/verify`);
               return;
