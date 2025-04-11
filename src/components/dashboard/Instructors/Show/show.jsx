@@ -116,7 +116,7 @@ export const ShowInstructor = (props) => {
     }
     axios({
       method: "DELETE",
-      url: API_URL + "/delete-instructor",
+      url: API_URL + `/admins/${getCookie("account_id")}/delete-instructor`,
       headers: {
         token: getCookie("token"),
       },
