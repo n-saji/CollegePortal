@@ -82,6 +82,7 @@ const resetPasswordForm = () => {
           <button
             type="submit"
             onClick={handleSubmit}
+            disabled={loading || success}
             className={`submit-button${success ? " success" : ""}`}
           >
             {loading ? "Loading..." : success ? "Success" : "Reset Password"}
