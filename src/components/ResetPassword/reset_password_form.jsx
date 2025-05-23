@@ -17,6 +17,10 @@ const resetPasswordForm = () => {
       alert("Passwords do not match");
       return;
     }
+    if (password.length < 8 || password_confirm.length < 8) {
+      alert("Password must be at least 8 characters long");
+      return;
+    }
 
     if (loading) {
       return;
