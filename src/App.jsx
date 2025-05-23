@@ -10,6 +10,8 @@ import { getCookie, validateCookie } from "./utils/cookies";
 import { GetUserName } from "./utils/helper";
 import { Profile } from "./components/Profile/Profile.jsx";
 import { LoaderOverlay } from "./components/Loader/Loader.jsx";
+import ResetMail from "./components/ResetPassword/send_reset_email.jsx";
+import ResetPassword from "./components/ResetPassword/reset_password_form.jsx";
 
 const SendOTP = async (email) => {
   try {
@@ -62,6 +64,7 @@ const LandingPage = () => {
   const [fetechedAllData, setFetchedAllData] = useState(false);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
+  const [showResetPassword, setShowResetPassword] = useState(false);
 
   useEffect(() => {
     document.title = "University Portal";
@@ -133,6 +136,9 @@ const LandingPage = () => {
               return;
             }
             alert(err.response.data);
+            if (err.response.data === "invalid credentials") {
+              setShowResetPassword(true);
+            }
             return;
           }
           alert("Something went wrong");
@@ -216,6 +222,11 @@ const LandingPage = () => {
               <button>Sign Up</button>
             </Link>
           </div>
+          {showResetPassword && (
+            <div className="form_reset_password">
+              <a href="/reset-password" style={{ color: "red", textDecoration: "underline" }}>Reset Password</a>
+            </div>
+          )}
         </div>
       </div>
     </>
@@ -261,6 +272,11 @@ function App() {
           element={<Signup redirect={true} />}
         />
         <Route path={`${BASE_URL}/logout`} element={<LogOut />} />
+        <Route path={`${BASE_URL}/reset-password`} element={<ResetMail />} />
+        <Route
+          path={`${BASE_URL}/reset-password/:token/:account_id/:email_id`}
+          element={<ResetPassword />}
+        />
       </Routes>
     </>
   );

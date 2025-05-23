@@ -1,0 +1,71 @@
+.reset-mail {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: black;
+  color: white;
+}
+.form-email {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  border: 1px solid white;
+  padding: 2rem;
+  border-radius: 10px;
+}
+.form-email-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+.form-email-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem;
+  width: 350px;
+}
+.form-email-body input {
+  width: 100%;
+  border-radius: 5px;
+  border: 1px solid black;
+  padding: 0.4rem 0;
+  height: 1.3rem;
+  font-size: 1rem;
+  outline: none;
+  transition: all 0.3s ease;
+  text-indent: 0.4rem;
+  margin: auto;
+}
+
+.submit-button {
+  width: 10rem;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: 1px solid black;
+  background-color: #dc5f00;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+}
+
+.submit-button button:hover {
+  background-color: #262323;
+  color: #f0f0f0;
+  transition: all 0.3s ease;
+  color: #dc5f00;
+}
+
+.submit-button.success {
+  background-color: #dc5f00;
+  color: black;
+  cursor: not-allowed;
+}
