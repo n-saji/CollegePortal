@@ -37,19 +37,15 @@
   justify-content: space-around;
 }
 
-.form_email {
-  /* display: flex; */
-  /* height: 2.5rem; */
+.form_email ,.form_password{
+  display: flex;
   justify-content: center;
-  width: 100%;
-}
-.form_password {
-  /* height: 3rem; */
+  width: 90%;
   display: flex;
   flex-direction: column;
   align-items: start;
-  width: 100%;
   gap: 0.3rem 0;
+  margin: auto;
 }
 
 .form_email input,
@@ -58,12 +54,13 @@
   border-radius: 5px;
   border: 1px solid black;
   padding: 0.4rem 0;
-  height: 0.9rem;
+  height: 1.3rem;
   font-size: 1rem;
   outline: none;
   background-color: #9c9c9c;
   transition: all 0.3s ease;
   text-indent: 0.4rem;
+  margin: auto;
 }
 .form_email ::placeholder,
 .form_password ::placeholder {
@@ -116,7 +113,6 @@
 .form_checkbox_password label {
   color: #898989;
 }
-
 
 @media screen and (max-width: 1001px) {
   .mobile_view {
