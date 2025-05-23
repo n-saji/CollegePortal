@@ -36,7 +36,11 @@ const resetPasswordForm = () => {
       })
       .catch((error) => {
         console.error("Error resetting password:", error);
-        alert("Error resetting password. Please try again.");
+        if (error.response.data === "token is invalid or expired") {
+          alert("Link expired. Please try again.");
+        } else {
+          alert("Error resetting password. Please try again.");
+        }
         setSuccess(false);
       })
       .finally(() => {
