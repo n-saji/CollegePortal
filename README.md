@@ -9,3 +9,7 @@ University Portal is a web application built using **React** and **Vite** that a
 - **Add Courses**: Create and update course offerings.
 - **Update All**: Comprehensive update functionality for managing records.
 - **OTP Authentication**: Secure one-time password verification to ensure safe access.
+
+## Back End Repo
+
+- Link To Backend Repository [CollegePortal-Backend](https://github.com/n-saji/CollegePortal-Backend)
